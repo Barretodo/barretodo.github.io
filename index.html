@@ -4,12 +4,14 @@
   <meta charset="UTF-8" />
   <title>Catálogo interactivo BARRETODO</title>
   <style>
-    body { font-family: Arial, sans-serif; margin: 20px; }
+    body { font-family: Arial, sans-serif; margin: 20px; background: #f9f9f9; }
+    h1 { color: #007bff; }
     .tabs {
       display: flex;
       border-bottom: 2px solid #ccc;
       margin-bottom: 10px;
       cursor: pointer;
+      flex-wrap: wrap;
     }
     .tab {
       padding: 10px 20px;
@@ -17,17 +19,28 @@
       border-bottom: none;
       margin-right: 5px;
       background: #f0f0f0;
+      border-radius: 5px 5px 0 0;
+      user-select: none;
     }
     .tab.active {
       background: white;
       font-weight: bold;
-      border-top: 2px solid #007bff;
+      border-top: 3px solid #007bff;
       border-right: 2px solid #007bff;
       border-left: 2px solid #007bff;
       color: #007bff;
+      box-shadow: 0 3px 6px rgb(0 123 255 / 0.3);
     }
     .tab-content {
       display: none;
+      background: white;
+      padding: 15px;
+      border: 2px solid #007bff;
+      border-top: none;
+      border-radius: 0 8px 8px 8px;
+      box-shadow: 0 4px 12px rgb(0 0 0 / 0.1);
+      max-height: 500px;
+      overflow-y: auto;
     }
     .tab-content.active {
       display: block;
@@ -35,33 +48,46 @@
     table {
       width: 100%;
       border-collapse: collapse;
-      margin-bottom: 20px;
+      margin-bottom: 15px;
+      font-size: 14px;
     }
     th, td {
       padding: 8px;
       border: 1px solid #ddd;
       text-align: left;
     }
+    th {
+      background: #007bff;
+      color: white;
+      position: sticky;
+      top: 0;
+      z-index: 2;
+    }
     input.cantidad {
       width: 60px;
-      padding: 4px;
+      padding: 5px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      font-size: 14px;
     }
     #total-container {
       display: flex;
       align-items: center;
       gap: 15px;
-      font-size: 1.2em;
+      font-size: 1.3em;
       font-weight: bold;
-      margin-bottom: 30px;
+      margin: 20px 0 40px 0;
+      color: #333;
     }
     button#generar-orden {
       background-color: #007bff;
       border: none;
       color: white;
-      padding: 10px 15px;
-      border-radius: 4px;
+      padding: 12px 20px;
+      border-radius: 5px;
       cursor: pointer;
-      font-size: 1em;
+      font-size: 1.1em;
+      transition: background-color 0.3s ease;
     }
     button#generar-orden:hover {
       background-color: #0056b3;
@@ -72,60 +98,81 @@
       display: none;
       position: fixed; 
       z-index: 1000; 
-      padding-top: 100px; 
+      padding-top: 120px; 
       left: 0;
       top: 0;
       width: 100%; 
       height: 100%; 
       overflow: auto;
       background-color: rgba(0,0,0,0.5);
+      font-family: Arial, sans-serif;
     }
     .modal-content {
       background-color: white;
       margin: auto;
-      padding: 20px;
-      border-radius: 6px;
-      width: 300px;
+      padding: 25px 30px;
+      border-radius: 10px;
+      width: 340px;
       position: relative;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.25);
     }
     .modal-content h2 {
       margin-top: 0;
+      color: #007bff;
+      text-align: center;
     }
     .modal-content label {
       display: block;
-      margin: 10px 0 5px;
+      margin: 15px 0 6px;
+      font-weight: bold;
+      color: #444;
     }
     .modal-content input[type="text"], 
     .modal-content input[type="email"], 
     .modal-content input[type="tel"] {
       width: 100%;
-      padding: 6px;
+      padding: 8px;
       box-sizing: border-box;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+      transition: border-color 0.3s ease;
+    }
+    .modal-content input[type="text"]:focus, 
+    .modal-content input[type="email"]:focus, 
+    .modal-content input[type="tel"]:focus {
+      border-color: #007bff;
+      outline: none;
     }
     .modal-content button {
-      margin-top: 15px;
+      margin-top: 25px;
       width: 100%;
-      padding: 10px;
+      padding: 12px;
       background-color: #007bff;
       color: white;
       border: none;
-      border-radius: 4px;
+      border-radius: 7px;
       cursor: pointer;
-      font-size: 1em;
+      font-size: 1.1em;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
     }
     .modal-content button:hover {
       background-color: #0056b3;
     }
     .modal-close {
       position: absolute;
-      right: 10px;
+      right: 14px;
       top: 10px;
-      font-size: 1.5em;
+      font-size: 1.8em;
       cursor: pointer;
       color: #aaa;
+      font-weight: bold;
+      user-select: none;
+      transition: color 0.3s ease;
     }
     .modal-close:hover {
-      color: black;
+      color: #000;
     }
   </style>
 </head>
@@ -148,7 +195,35 @@
       <tr><td>BOLSON PH 30 ROLLOS x30M</td><td class="precio">12990</td><td><input type="number" min="0" value="0" class="cantidad"></td><td class="subtotal">0</td></tr>
       <tr><td>BOLSON PH 30 ROLLOS x60M</td><td class="precio">14990</td><td><input type="number" min="0" value="0" class="cantidad"></td><td class="subtotal">0</td></tr>
       <tr><td>BOLSON PH 30 ROLLOS x80M</td><td class="precio">16990</td><td><input type="number" min="0" value="0" class="cantidad"></td><td class="subtotal">0</td></tr>
-      <!-- Agrega el resto de productos descartables acá -->
+      <tr><td>BOLSON PH 30 ROLLOS x100M</td><td class="precio">17990</td><td><input type="number" min="0" value="0" class="cantidad"></td><td class="subtotal">0</td></tr>
+      <tr><td>BOLSON PH 30 ROLLOS x120M</td><td class="precio">18990</td><td><input type="number" min="0" value="0" class="cantidad"></td><td class="subtotal">0</td></tr>
+      <tr><td>BOLSON COCINA 6x200</td><td class="precio">12990</td><td><input type="number" min="0" value="0" class="cantidad"></td><td class="subtotal">0</td></tr>
+      <tr><td>BOLSON COCINA 8x200</td><td class="precio">16990</td><td><input type="number" min="0" value="0" class="cantidad"></td><td class="subtotal">0</td></tr>
+      <tr><td>BOLSON PH JUMBO 8 ROLLOS x220M</td><td class="precio">9990</td><td><input type="number" min="0" value="0" class="cantidad"></td><td class="subtotal">0</td></tr>
+      <tr><td>BOLSON PH JUMBO 8 ROLLOS x300M</td><td class="precio">11990</td><td><input type="number" min="0" value="0" class="cantidad"></td><td class="subtotal">0</td></tr>
+      <tr><td>CAJA TOALLAS INTERCALADAS BLANCAS ECO</td><td class="precio">12990</td><td><input type="number" min="0" value="0" class="cantidad"></td><td class="subtotal">0</td></tr>
+      <tr><td>BOLSA RESIDUOS 40x60 x50 (NEGRAS)</td><td class="precio">5990</td><td><input type="number" min="0" value="0" class="cantidad"></td><td class="subtotal">0</td></tr>
+      <tr><td>BOLSA RESIDUOS 50x70 x50 (NEGRAS)</td><td class="precio">6990</td><td><input type="number" min="0" value="0" class="cantidad"></td><td class="subtotal">0</td></tr>
+      <tr><td>BOLSA RESIDUOS 60x90 x50 (NEGRAS)</td><td class="precio">7990</td><td><input type="number" min="0" value="0" class="cantidad"></td><td class="subtotal">0</td></tr>
+      <tr><td>BOLSA RESIDUOS 80x110 x50 (NEGRAS)</td><td class="precio">14990</td><td><input type="number" min="0" value="0" class="cantidad"></td><td class="subtotal">0</td></tr>
+      <tr><td>BOLSA RESIDUOS 45x60 x50 (TRANSPARENTES)</td><td class="precio">7990</td><td><input type="number" min="0" value="0" class="cantidad"></td><td class="subtotal">0</td></tr>
+      <tr><td>BOLSA RESIDUOS 60x90 x50 (TRANSPARENTES)</td><td class="precio">9990</td><td><input type="number" min="0" value="0" class="cantidad"></td><td class="subtotal">0</td></tr>
+      <tr><td>BOLSA RESIDUOS 80x100 x50 (TRANSPARENTES)</td><td class="precio">15990</td><td><input type="number" min="0" value="0" class="cantidad"></td><td class="subtotal">0</td></tr>
+      <tr><td>BOLSA RESIDUOS 80x110 x50 (VERDES)</td><td class="precio">15990</td><td><input type="number" min="0" value="0" class="cantidad"></td><td class="subtotal">0</td></tr>
+      <tr><td>BOLSA ESCOMBRO x10 (NEGRAS)</td><td class="precio">2990</td><td><input type="number" min="0" value="0" class="cantidad"></td><td class="subtotal">0</td></tr>
+      <tr><td>BOLSA ESCOMBRO x10 (TRANSPARENTES)</td><td class="precio">2990</td><td><input type="number" min="0" value="0" class="cantidad"></td><td class="subtotal">0</td></tr>
+      <tr><td>ZALEAS x10</td><td class="precio">6000</td><td><input type="number" min="0" value="0" class="cantidad"></td><td class="subtotal">0</td></tr>
+      <tr><td>PAÑAL ADULTO x10</td><td class="precio">6300</td><td><input type="number" min="0" value="0" class="cantidad"></td><td class="subtotal">0</td></tr>
+      <tr><td>PAÑAL NIÑO x32-40-48</td><td class="precio">12990</td><td><input type="number" min="0" value="0" class="cantidad"></td><td class="subtotal">0</td></tr>
+      <tr><td>PAÑAL NIÑO PREMIUM x32-40-48</td><td class="precio">12990</td><td><input type="number" min="0" value="0" class="cantidad"></td><td class="subtotal">0</td></tr>
+      <tr><td>BARBIJO</td><td class="precio">12990</td><td><input type="number" min="0" value="0" class="cantidad"></td><td class="subtotal">0</td></tr>
+      <tr><td>CAJA GUANTE LATEX x100</td><td class="precio">5990</td><td><input type="number" min="0" value="0" class="cantidad"></td><td class="subtotal">0</td></tr>
+      <tr><td>CAJA GUANTE NITRILO x100</td><td class="precio">5990</td><td><input type="number" min="0" value="0" class="cantidad"></td><td class="subtotal">0</td></tr>
+      <tr><td>BOLSA DE ARRANQUE 15x20</td><td class="precio">4990</td><td><input type="number" min="0" value="0" class="cantidad"></td><td class="subtotal">0</td></tr>
+      <tr><td>BOLSA DE ARRANQUE 15x25</td><td class="precio">5490</td><td><input type="number" min="0" value="0" class="cantidad"></td><td class="subtotal">0</td></tr>
+      <tr><td>BOLSA DE ARRANQUE 25x35</td><td class="precio">5990</td><td><input type="number" min="0" value="0" class="cantidad"></td><td class="subtotal">0</td></tr>
+      <tr><td>BOLSA DE ARRANQUE 35x45</td><td class="precio">6490</td><td><input type="number" min="0" value="0" class="cantidad"></td><td class="subtotal">0</td></tr>
+      <tr><td>BOLSA CAMISETA</td><td class="precio">2490</td><td><input type="number" min="0" value="0" class="cantidad"></td><td class="subtotal">0</td></tr>
     </tbody>
   </table>
 </div>
@@ -159,7 +234,15 @@
     <tbody>
       <tr><td>DESODORANTE PISO 5L</td><td class="precio">3990</td><td><input type="number" min="0" value="0" class="cantidad"></td><td class="subtotal">0</td></tr>
       <tr><td>LAVANDINA 5L</td><td class="precio">3990</td><td><input type="number" min="0" value="0" class="cantidad"></td><td class="subtotal">0</td></tr>
-      <!-- Agrega más productos concentrados acá -->
+      <tr><td>JABON ROPA (SKP o ARIEL) 5L</td><td class="precio">9890</td><td><input type="number" min="0" value="0" class="cantidad"></td><td class="subtotal">0</td></tr>
+      <tr><td>SUAVIZANTE ROPA (VVERE) 5L</td><td class="precio">8990</td><td><input type="number" min="0" value="0" class="cantidad"></td><td class="subtotal">0</td></tr>
+      <tr><td>QUITAMANCHAS 1L</td><td class="precio">2990</td><td><input type="number" min="0" value="0" class="cantidad"></td><td class="subtotal">0</td></tr>
+      <tr><td>DETERGENTE (ULTRA) 5L</td><td class="precio">8390</td><td><input type="number" min="0" value="0" class="cantidad"></td><td class="subtotal">0</td></tr>
+      <tr><td>JABON MANOS 5L</td><td class="precio">8990</td><td><input type="number" min="0" value="0" class="cantidad"></td><td class="subtotal">0</td></tr>
+      <tr><td>CLORO 25L</td><td class="precio">24990</td><td><input type="number" min="0" value="0" class="cantidad"></td><td class="subtotal">0</td></tr>
+      <tr><td>LIMPIAVIDRIO 5L</td><td class="precio">7990</td><td><input type="number" min="0" value="0" class="cantidad"></td><td class="subtotal">0</td></tr>
+      <tr><td>DESENGRASANTE 5L</td><td class="precio">6990</td><td><input type="number" min="0" value="0" class="cantidad"></td><td class="subtotal">0</td></tr>
+      <tr><td>JABON LIMPIEZA MANOS 5L</td><td class="precio">8990</td><td><input type="number" min="0" value="0" class="cantidad"></td><td class="subtotal">0</td></tr>
     </tbody>
   </table>
 </div>
@@ -168,9 +251,19 @@
   <table>
     <thead><tr><th>Producto</th><th>Precio unitario ($)</th><th>Cantidad</th><th>Subtotal ($)</th></tr></thead>
     <tbody>
+      <tr><td>ESCBAO CABO MADERA</td><td class="precio">3490</td><td><input type="number" min="0" value="0" class="cantidad"></td><td class="subtotal">0</td></tr>
+      <tr><td>TRAPEADOR PLANO</td><td class="precio">9990</td><td><input type="number" min="0" value="0" class="cantidad"></td><td class="subtotal">0</td></tr>
       <tr><td>ESPONJA LAVAVAJILLAS</td><td class="precio">1290</td><td><input type="number" min="0" value="0" class="cantidad"></td><td class="subtotal">0</td></tr>
       <tr><td>GUANTES LIMPIEZA</td><td class="precio">3990</td><td><input type="number" min="0" value="0" class="cantidad"></td><td class="subtotal">0</td></tr>
-      <!-- Más herramientas -->
+      <tr><td>ESCBAO CABO PLASTICO</td><td class="precio">1990</td><td><input type="number" min="0" value="0" class="cantidad"></td><td class="subtotal">0</td></tr>
+      <tr><td>ESCBAO PLASTICO DE COCINA</td><td class="precio">1990</td><td><input type="number" min="0" value="0" class="cantidad"></td><td class="subtotal">0</td></tr>
+      <tr><td>FIBRA TRAPERO</td><td class="precio">2990</td><td><input type="number" min="0" value="0" class="cantidad"></td><td class="subtotal">0</td></tr>
+      <tr><td>JABONERA</td><td class="precio">7990</td><td><input type="number" min="0" value="0" class="cantidad"></td><td class="subtotal">0</td></tr>
+      <tr><td>MOPA PLANA</td><td class="precio">9990</td><td><input type="number" min="0" value="0" class="cantidad"></td><td class="subtotal">0</td></tr>
+      <tr><td>MOPA PLANA PREMIUM</td><td class="precio">12990</td><td><input type="number" min="0" value="0" class="cantidad"></td><td class="subtotal">0</td></tr>
+      <tr><td>FREGONA PREMIUM</td><td class="precio">14990</td><td><input type="number" min="0" value="0" class="cantidad"></td><td class="subtotal">0</td></tr>
+      <tr><td>TRAPERO DE HILO</td><td class="precio">4990</td><td><input type="number" min="0" value="0" class="cantidad"></td><td class="subtotal">0</td></tr>
+      <tr><td>TRAPERO DE PVA</td><td class="precio">4990</td><td><input type="number" min="0" value="0" class="cantidad"></td><td class="subtotal">0</td></tr>
     </tbody>
   </table>
 </div>
@@ -180,7 +273,12 @@
     <thead><tr><th>Producto</th><th>Precio unitario ($)</th><th>Cantidad</th><th>Subtotal ($)</th></tr></thead>
     <tbody>
       <tr><td>GLADE AEROSOL</td><td class="precio">2990</td><td><input type="number" min="0" value="0" class="cantidad"></td><td class="subtotal">0</td></tr>
-      <!-- Más productos aromatización -->
+      <tr><td>AROMATIZADOR SAPHIRUS 200ml</td><td class="precio">2190</td><td><input type="number" min="0" value="0" class="cantidad"></td><td class="subtotal">0</td></tr>
+      <tr><td>AROMATIZADOR SAPHIRUS 500ml</td><td class="precio">3990</td><td><input type="number" min="0" value="0" class="cantidad"></td><td class="subtotal">0</td></tr>
+      <tr><td>AROMATIZADOR SAPHIRUS 1L</td><td class="precio">6490</td><td><input type="number" min="0" value="0" class="cantidad"></td><td class="subtotal">0</td></tr>
+      <tr><td>AROMATIZADOR SAPHIRUS DECORATIVO</td><td class="precio">4790</td><td><input type="number" min="0" value="0" class="cantidad"></td><td class="subtotal">0</td></tr>
+      <tr><td>AROMATIZADOR SAPHIRUS 3L</td><td class="precio">12990</td><td><input type="number" min="0" value="0" class="cantidad"></td><td class="subtotal">0</td></tr>
+      <tr><td>AROMATIZADOR SAPHIRUS 5L</td><td class="precio">16990</td><td><input type="number" min="0" value="0" class="cantidad"></td><td class="subtotal">0</td></tr>
     </tbody>
   </table>
 </div>
@@ -190,7 +288,11 @@
     <thead><tr><th>Producto</th><th>Precio unitario ($)</th><th>Cantidad</th><th>Subtotal ($)</th></tr></thead>
     <tbody>
       <tr><td>RAID M Y M SIN OLOR</td><td class="precio">6790</td><td><input type="number" min="0" value="0" class="cantidad"></td><td class="subtotal">0</td></tr>
-      <!-- Más insecticidas -->
+      <tr><td>RAID JARDIN AEROSOL</td><td class="precio">7990</td><td><input type="number" min="0" value="0" class="cantidad"></td><td class="subtotal">0</td></tr>
+      <tr><td>RAID GEL</td><td class="precio">4790</td><td><input type="number" min="0" value="0" class="cantidad"></td><td class="subtotal">0</td></tr>
+      <tr><td>BAYGON AEROSOL</td><td class="precio">4590</td><td><input type="number" min="0" value="0" class="cantidad"></td><td class="subtotal">0</td></tr>
+      <tr><td>BAYGON GEL</td><td class="precio">3690</td><td><input type="number" min="0" value="0" class="cantidad"></td><td class="subtotal">0</td></tr>
+      <tr><td>KEROSENE 20 L</td><td class="precio">15990</td><td><input type="number" min="0" value="0" class="cantidad"></td><td class="subtotal">0</td></tr>
     </tbody>
   </table>
 </div>
@@ -201,17 +303,17 @@
 </div>
 
 <!-- Modal formulario -->
-<div id="modal" class="modal">
+<div id="modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
   <div class="modal-content">
-    <span class="modal-close" id="modal-close">&times;</span>
-    <h2>Completar datos para orden</h2>
-    <form id="form-datos">
+    <span class="modal-close" id="modal-close" role="button" aria-label="Cerrar modal">&times;</span>
+    <h2 id="modalTitle">Completar datos para presupuesto</h2>
+    <form id="form-datos" novalidate>
       <label for="nombre">Nombre completo *</label>
-      <input type="text" id="nombre" name="nombre" required />
+      <input type="text" id="nombre" name="nombre" required autocomplete="name" />
       <label for="telefono">Teléfono *</label>
-      <input type="tel" id="telefono" name="telefono" required pattern="[0-9+\-\s]{7,15}" placeholder="+54 9 11 1234 5678" />
+      <input type="tel" id="telefono" name="telefono" required pattern="[0-9+\-\s]{7,15}" placeholder="+54 9 11 1234 5678" autocomplete="tel" />
       <label for="email">Email *</label>
-      <input type="email" id="email" name="email" required placeholder="email@dominio.com" />
+      <input type="email" id="email" name="email" required placeholder="email@dominio.com" autocomplete="email" />
       <button type="submit">Generar PDF</button>
     </form>
   </div>
@@ -258,13 +360,13 @@
   const formDatos = document.getElementById('form-datos');
 
   btnGenerar.addEventListener('click', () => {
-    // Verificar si hay al menos un producto con cantidad > 0
     const productosSeleccionados = obtenerProductosSeleccionados();
     if (productosSeleccionados.length === 0) {
       alert('Por favor, seleccioná al menos un producto con cantidad mayor a 0.');
       return;
     }
     modal.style.display = 'block';
+    formDatos.nombre.focus();
   });
 
   btnCerrar.addEventListener('click', () => {
@@ -290,21 +392,32 @@
     return productos;
   }
 
+  // Formatear fecha dd/mm/yyyy
+  function fechaActualFormateada() {
+    const f = new Date();
+    const dd = String(f.getDate()).padStart(2, '0');
+    const mm = String(f.getMonth()+1).padStart(2, '0');
+    const yyyy = f.getFullYear();
+    return `${dd}/${mm}/${yyyy}`;
+  }
+
   // Generar PDF con jsPDF
   formDatos.addEventListener('submit', e => {
     e.preventDefault();
+
+    if (!formDatos.checkValidity()) {
+      alert('Por favor, completá todos los campos correctamente.');
+      return;
+    }
+
     const nombre = formDatos.nombre.value.trim();
     const telefono = formDatos.telefono.value.trim();
     const email = formDatos.email.value.trim();
 
-    if (!nombre || !telefono || !email) {
-      alert('Por favor, completá todos los campos requeridos.');
-      return;
-    }
-
     const productos = obtenerProductosSeleccionados();
     if (productos.length === 0) {
       alert('No hay productos seleccionados.');
+      modal.style.display = 'none';
       return;
     }
 
@@ -313,42 +426,90 @@
     const { jsPDF } = window.jspdf;
     const doc = new jsPDF();
 
-    doc.setFontSize(18);
-    doc.text("Orden de Compra BARRETODO", 14, 20);
+    // Estilos generales
+    const pageWidth = doc.internal.pageSize.getWidth();
+    let y = 20;
 
-    doc.setFontSize(12);
-    doc.text(`Nombre: ${nombre}`, 14, 30);
-    doc.text(`Teléfono: ${telefono}`, 14, 37);
-    doc.text(`Email: ${email}`, 14, 44);
-    doc.text(" ", 14, 50);
+    // Título con fondo azul
+    doc.setFillColor(0, 123, 255);
+    doc.rect(0, 0, pageWidth, 25, 'F');
+    doc.setTextColor(255, 255, 255);
+    doc.setFontSize(20);
+    doc.setFont("helvetica", "bold");
+    doc.text("PRESUPUESTO BARRETODO", pageWidth / 2, 17, { align: "center" });
 
-    doc.setFontSize(14);
-    doc.text("Detalle de productos:", 14, 57);
+    // Fecha y nombre cliente debajo
+    doc.setFontSize(11);
+    doc.setTextColor(0,0,0);
+    doc.setFont("helvetica", "normal");
+    doc.text(`Fecha: ${fechaActualFormateada()}`, 14, y + 15);
+    doc.text(`Nombre: ${nombre}`, 14, y + 23);
+    doc.text(`Teléfono: ${telefono}`, 14, y + 31);
+    doc.text(`Email: ${email}`, 14, y + 39);
 
-    let y = 65;
-    doc.setFontSize(12);
-    productos.forEach((p) => {
-      const line = `${p.nombre} - Cant: ${p.cantidad} - $${p.subtotal.toFixed(2)}`;
-      doc.text(line, 14, y);
-      y += 7;
-      if (y > 280) {
+    // Línea separadora
+    y += 45;
+    doc.setDrawColor(0, 123, 255);
+    doc.setLineWidth(0.8);
+    doc.line(14, y, pageWidth - 14, y);
+
+    // Encabezado tabla productos
+    y += 10;
+    doc.setFontSize(13);
+    doc.setTextColor(0, 123, 255);
+    doc.setFont("helvetica", "bold");
+    doc.text("Producto", 14, y);
+    doc.text("Cant.", 130, y, { align: "right" });
+    doc.text("Precio Unitario", 150, y, { align: "right" });
+    doc.text("Subtotal", pageWidth - 14, y, { align: "right" });
+
+    // Datos productos
+    y += 7;
+    doc.setDrawColor(200);
+    doc.setLineWidth(0.5);
+    doc.line(14, y, pageWidth - 14, y);
+    y += 5;
+
+    doc.setFontSize(11);
+    doc.setTextColor(0,0,0);
+    doc.setFont("helvetica", "normal");
+
+    productos.forEach((p, i) => {
+      if (y > 280) {  // salto de página si se pasa
         doc.addPage();
         y = 20;
       }
+      doc.text(p.nombre, 14, y);
+      doc.text(p.cantidad.toString(), 130, y, { align: "right" });
+      doc.text(`$${p.precio.toFixed(2)}`, 150, y, { align: "right" });
+      doc.text(`$${p.subtotal.toFixed(2)}`, pageWidth - 14, y, { align: "right" });
+      y += 8;
     });
 
-    y += 5;
-    doc.setFontSize(14);
-    doc.text(`Total: $${total.toFixed(2)}`, 14, y);
+    // Línea separadora antes del total
+    y += 3;
+    doc.setDrawColor(0, 123, 255);
+    doc.setLineWidth(0.8);
+    doc.line(14, y, pageWidth - 14, y);
 
-    y += 12;
+    // Total
+    y += 15;
+    doc.setFontSize(14);
+    doc.setFont("helvetica", "bold");
+    doc.text("TOTAL", 14, y);
+    doc.text(`$${total.toFixed(2)}`, pageWidth - 14, y, { align: "right" });
+
+    // Mensaje final
+    y += 20;
     doc.setFontSize(11);
-    doc.text("Ponete en contacto con +1151022954 BARRETODO, para realizar este pedido,", 14, y);
-    y += 6;
-    doc.text("sino alguien de nuestro equipo se va a contactar con usted en menos de 24hs.", 14, y);
+    doc.setFont("helvetica", "normal");
+    const mensaje = 
+      "Para gestionar la compra, por favor contactate con nosotros vía WhatsApp al 1151022954 o por correo electrónico a contacto.barretodo@gmail.com y envianos el archivo generado.";
+    const splitText = doc.splitTextToSize(mensaje, pageWidth - 28);
+    doc.text(splitText, 14, y);
 
     // Descargar PDF
-    doc.save(`OrdenCompra_BARRETODO_${Date.now()}.pdf`);
+    doc.save(`Presupuesto_BARRETODO_${fechaActualFormateada().replace(/\//g,"-")}_${nombre.replace(/\s+/g,"_")}.pdf`);
 
     modal.style.display = 'none';
     formDatos.reset();
