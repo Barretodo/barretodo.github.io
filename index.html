@@ -3,6 +3,12 @@
 
 <html lang="es">
 <head>
+   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<script>
+  (function() {
+    emailjs.init("Rcb62aQeAovYyUgn1");
+  })();
+</script>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <meta charset="utf-8"/>
 <title>Catálogo interactivo BARRETODO</title>
@@ -293,7 +299,7 @@
 <span>Descuento aplicado: <strong id="descuento">-$0</strong></span>
 <span>Total final: <strong id="total-final">$0</strong></span>
 <div id="mensaje-desc" style="margin-top:10px; color:green;"></div>
-<button id="abrir-modal">Generar presupuesto</button>
+<button onclick="generarPresupuesto(); enviarPresupuestoPorEmail();">Generar presupuesto</button>
 </div>
 <script>const tabs = document.querySelectorAll('.tab'); const contents = document.querySelectorAll('.tab-content'); tabs.forEach((tab, i) => { tab.addEventListener('click', () => { tabs.forEach(t => t.classList.remove('active')); contents.forEach(c => c.classList.remove('active')); tab.classList.add('active'); contents[i].classList.add('active'); }); }); tabs[0].click();</script>
 <script>
@@ -401,7 +407,23 @@ function enviarPresupuestoPorEmail(clienteEmail, htmlContenido) {
         alert("Error al enviar el presupuesto por correo.");
     });
 }
-</script></body>
+</script>
+<script>
+function enviarPresupuestoPorEmail() {
+    const htmlPresupuesto = document.getElementById("presupuesto-generado").innerHTML;
+    emailjs.send("service_pm1p5tr", "template_lyjye95", {
+        mensaje_html: htmlPresupuesto
+    })
+    .then(function(response) {
+        console.log("Correo enviado", response.status, response.text);
+    }, function(error) {
+        console.error("Error al enviar el correo:", error);
+        alert("No se pudo enviar el mail. Revisá tu conexión o configuración.");
+    });
+}
+</script>
+   
+</body>
 </html>
 <!-- Modal para completar datos del cliente -->
 <div id="modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:#00000088; z-index:1000;">
