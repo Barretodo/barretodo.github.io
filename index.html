@@ -563,15 +563,33 @@ document.getElementById("form-datos").addEventListener("submit", function(e) {
 
   
   // Enviar por EmailJS
-  const templateParams = {
-    nombre,
-    telefono,
-    email,
-    direccion,
-    nota,
-    productos: productosSeleccionados.map(p => `${p.nombre} x${p.cantidad} - $${p.subtotal.toLocaleString()}`).join("\n"),
-    total: totalFinal.toLocaleString()
-  };
+const filasHtml = productosSeleccionados.map(p => 
+  `<tr><td>${p.nombre}</td><td>${p.cantidad}</td><td>$${p.precio.toLocaleString()}</td><td>$${p.subtotal.toLocaleString()}</td></tr>`
+).join("");
+
+const mensaje_html = `
+  <table border="1" cellpadding="6" cellspacing="0" style="border-collapse:collapse;">
+    <thead><tr><th>Producto</th><th>Cantidad</th><th>Precio Unit.</th><th>Subtotal</th></tr></thead>
+    <tbody>${filasHtml}</tbody>
+  </table>
+  <p><strong>Total:</strong> $${totalFinal.toLocaleString()}</p>
+`;
+
+const templateParams = {
+  nombre,
+  telefono,
+  email,
+  direccion,
+  nota,
+  mensaje_html
+};
+
+emailjs.send("service_pm1p5tr", "template_lyjye95", templateParams)
+  .then(() => alert("Presupuesto enviado por mail correctamente."))
+  .catch(error => {
+    console.error("EmailJS error:", error);
+    alert("Error al enviar el mail: " + (error.text || JSON.stringify(error)));
+});
 
   emailjs.send("service_pm1p5tr", "template_lyjye95", templateParams)
     .then(() => alert("Presupuesto enviado por mail correctamente."))
