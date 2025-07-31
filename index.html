@@ -70,10 +70,10 @@
     button:hover { background-color: #218838; }
 
   </style>
-</head>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script><script>(() => { emailjs.init('Rcb62aQeAovYyUgn1'); })();</script></head>
 <body style="background-color:#f4f4f4;">
-<div style="text-align:center;margin-top:20px;"><img src="logo-barretodo.jpeg" alt="Logo" width="180" /></div>
-   <h1>Catálogo interactivo BARRETODO</h1>
+<div style="text-align:center;margin-top:20px;"><img alt="Logo" src="logo-barretodo.jpeg" width="180"/></div>
+<h1>Catálogo interactivo BARRETODO</h1>
 <div class="mensaje-descuento">
   5% de descuento en compras mayores a $200.000 (SURTIDAS)<br/>
   10% de descuento en compras mayores a $300.000 (SURTIDAS)
@@ -125,7 +125,6 @@
 </table>
 </div>
 <div class="tab-content">
-
 <div style="text-align:center;margin:20px;"><input id="buscador-1" placeholder="Buscar en esta categoría..." style="width:90%;max-width:400px;padding:12px;font-size:16px;background:#fff;border:2px solid #ccc;border-radius:6px;box-shadow:0 2px 4px rgba(0,0,0,0.1);" type="text"/></div><table>
 <thead><tr class="producto"><th>Producto</th><th>Precio ($)</th><th>Cantidad</th><th>Subtotal</th></tr></thead>
 <tbody>
@@ -172,7 +171,6 @@
 </table>
 </div>
 <div class="tab-content">
-
 <div style="text-align:center;margin:20px;"><input id="buscador-2" placeholder="Buscar en esta categoría..." style="width:90%;max-width:400px;padding:12px;font-size:16px;background:#fff;border:2px solid #ccc;border-radius:6px;box-shadow:0 2px 4px rgba(0,0,0,0.1);" type="text"/></div><table>
 <thead><tr class="producto"><th>Producto</th><th>Precio ($)</th><th>Cantidad</th><th>Subtotal</th></tr></thead>
 <tbody>
@@ -245,7 +243,6 @@
 </table>
 </div>
 <div class="tab-content">
-
 <div style="text-align:center;margin:20px;"><input id="buscador-3" placeholder="Buscar en esta categoría..." style="width:90%;max-width:400px;padding:12px;font-size:16px;background:#fff;border:2px solid #ccc;border-radius:6px;box-shadow:0 2px 4px rgba(0,0,0,0.1);" type="text"/></div><table>
 <thead><tr class="producto"><th>Producto</th><th>Precio ($)</th><th>Cantidad</th><th>Subtotal</th></tr></thead>
 <tbody>
@@ -270,7 +267,6 @@
 </table>
 </div>
 <div class="tab-content">
-
 <div style="text-align:center;margin:20px;"><input id="buscador-4" placeholder="Buscar en esta categoría..." style="width:90%;max-width:400px;padding:12px;font-size:16px;background:#fff;border:2px solid #ccc;border-radius:6px;box-shadow:0 2px 4px rgba(0,0,0,0.1);" type="text"/></div><table>
 <thead><tr class="producto"><th>Producto</th><th>Precio ($)</th><th>Cantidad</th><th>Subtotal</th></tr></thead>
 <tbody>
@@ -394,7 +390,18 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 </script>
-</body>
+<script>
+function enviarPresupuestoPorEmail(clienteEmail, htmlContenido) {
+    emailjs.send("service_pm1p5tr", "template_lyjye95", {
+        mensaje_html: htmlContenido,
+        to_email: clienteEmail + ", contacto.barretodo@gmail.com"
+    }).then(function(response) {
+        alert("Presupuesto enviado por correo correctamente.");
+    }, function(error) {
+        alert("Error al enviar el presupuesto por correo.");
+    });
+}
+</script></body>
 </html>
 <!-- Modal para completar datos del cliente -->
 <div id="modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:#00000088; z-index:1000;">
