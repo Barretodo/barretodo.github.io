@@ -266,6 +266,7 @@ async function cargarCatalogo() {
   document.querySelectorAll('.cantidad').forEach(input => {
     input.addEventListener('input', actualizarTotales);
   });
+   actualizarTotales(); // Ejecutar una vez para iniciar los totales correctamente
 }
 window.addEventListener('DOMContentLoaded', cargarCatalogo);
 </script></body>
