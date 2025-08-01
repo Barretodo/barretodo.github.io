@@ -578,11 +578,11 @@ const mensaje_html = `
 const templateParams = {
   nombre,
   telefono,
-  email,
+  email,         // 👈 esto se reemplaza en {{email}} del template
   direccion,
   nota,
   mensaje_html,
-   reply_to: email
+  reply_to: email
 };
 
 emailjs.send("service_pm1p5tr", "template_lyjye95", templateParams)
@@ -591,10 +591,6 @@ emailjs.send("service_pm1p5tr", "template_lyjye95", templateParams)
     console.error("EmailJS error:", error);
     alert("Error al enviar el mail: " + (error.text || JSON.stringify(error)));
 });
-
-  emailjs.send("service_pm1p5tr", "template_lyjye95", templateParams)
-    .then(() => alert("Presupuesto enviado por mail correctamente."))
-    .catch(error => alert("Error al enviar el mail: " + error));
 
 
   const msg = encodeURIComponent("Hola! Te estoy contactando por este presupuesto que acabo de generar desde el catálogo BARRETODO.");
