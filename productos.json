@@ -34,7 +34,8 @@
         { "nombre": "BOLSA DE ARRANQUE 15x25", "precio": "5490" },
         { "nombre": "BOLSA DE ARRANQUE 25x35", "precio": "5990" },
         { "nombre": "BOLSA DE ARRANQUE 35x45", "precio": "6490" },
-        { "nombre": "BOLSA CAMISETA", "precio": "2490" }
+        { "nombre": "BOLSA CAMISETA", "precio": "2490" },
+        { "nombre": "BOLSA CAMISETA GRANDE", "precio": "2990" }
       ]
     },
     {
