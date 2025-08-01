@@ -12,6 +12,8 @@
   th, td { padding: 12px; border-bottom: 1px solid #ddd; text-align: left; }
   th { background: #007bff; color: white; }
   input.cantidad { width: 60px; padding: 6px; }
+  tfoot td { font-weight: bold; }
+  #totales-row td { background: #eee; }
   button#abrir-modal { margin: 20px 0; padding: 12px 24px; background-color: #28a745; color: white; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; display: block; margin-left: auto; margin-right: auto;}
   button#abrir-modal:hover { background-color: #218838; }
 </style>
@@ -25,18 +27,33 @@
   <thead>
     <tr>
       <th>Producto</th>
-      <th>Precio</th>
+      <th>Precio Unitario</th>
       <th>Cantidad</th>
+      <th>Subtotal</th>
     </tr>
   </thead>
   <tbody>
-    <!-- Productos se cargan aquí -->
+    <!-- Productos cargados desde JSON -->
   </tbody>
+  <tfoot>
+    <tr id="totales-row">
+      <td colspan="3" style="text-align:right;">Total sin descuento:</td>
+      <td id="total-sin-descuento">$0</td>
+    </tr>
+    <tr id="descuento-row" style="display:none;">
+      <td colspan="3" style="text-align:right;">Descuento aplicado:</td>
+      <td id="descuento">$0</td>
+    </tr>
+    <tr id="total-final-row" style="display:none; font-weight:bold;">
+      <td colspan="3" style="text-align:right;">Total final:</td>
+      <td id="total-final">$0</td>
+    </tr>
+  </tfoot>
 </table>
 
 <button id="abrir-modal">Generar Presupuesto</button>
 
-<!-- Modal para completar datos del cliente -->
+<!-- Modal datos cliente -->
 <div id="modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:#00000088; z-index:1000;">
   <div style="background:white; max-width:400px; margin:100px auto; padding:20px; border-radius:10px; position:relative;">
     <span onclick="document.getElementById('modal').style.display='none'" style="position:absolute; right:10px; top:10px; cursor:pointer; font-weight:bold;">×</span>
@@ -62,22 +79,20 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
 <script>
-  // Inicializar EmailJS (reemplazá con tu userID si no está)
-  emailjs.init("tu_userid_aqui");
+  emailjs.init("tu_userid_aqui"); // reemplazá con tu userid
 
   let productos = [];
 
-  // Cargar productos desde JSON
   async function cargarProductos() {
     try {
-      const response = await fetch('productos.json');
-      const data = await response.json();
-      productos = data.categorias.flatMap(categoria =>
-        categoria.productos.map(p => ({ nombre: p.nombre, precio: Number(p.precio) }))
+      const resp = await fetch('productos.json');
+      const data = await resp.json();
+      productos = data.categorias.flatMap(c =>
+        c.productos.map(p => ({ nombre: p.nombre, precio: Number(p.precio) }))
       );
       mostrarProductos(productos);
-    } catch (error) {
-      alert("Error al cargar productos.json: " + error);
+    } catch (e) {
+      alert("Error cargando productos.json: " + e);
     }
   }
 
@@ -90,51 +105,96 @@
         <td>${p.nombre}</td>
         <td class="precio">$${p.precio.toLocaleString()}</td>
         <td><input type="number" min="0" value="0" class="cantidad" /></td>
+        <td class="subtotal">$0</td>
       `;
       tbody.appendChild(tr);
     });
+    agregarListenersCantidad();
+    actualizarTotales();
   }
 
-  // Buscador
+  function agregarListenersCantidad() {
+    const inputs = document.querySelectorAll("input.cantidad");
+    inputs.forEach(input => {
+      input.addEventListener("input", () => {
+        const tr = input.closest("tr");
+        const precio = Number(tr.querySelector(".precio").textContent.replace(/[\$\.\,]/g, ""));
+        const cantidad = Number(input.value);
+        const subtotal = precio * cantidad;
+        tr.querySelector(".subtotal").textContent = `$${subtotal.toLocaleString()}`;
+        actualizarTotales();
+      });
+    });
+  }
+
+  function actualizarTotales() {
+    const filas = Array.from(document.querySelectorAll("#tabla-productos tbody tr"));
+    let total = 0;
+    filas.forEach(tr => {
+      const subtotalText = tr.querySelector(".subtotal").textContent.replace(/[\$\.\,]/g, "");
+      const subtotal = Number(subtotalText) || 0;
+      total += subtotal;
+    });
+
+    const totalSinDescuentoElem = document.getElementById("total-sin-descuento");
+    const descuentoRow = document.getElementById("descuento-row");
+    const descuentoElem = document.getElementById("descuento");
+    const totalFinalRow = document.getElementById("total-final-row");
+    const totalFinalElem = document.getElementById("total-final");
+
+    totalSinDescuentoElem.textContent = `$${total.toLocaleString()}`;
+
+    let descuento = 0;
+    if (total >= 300000) {
+      descuento = 0.10;
+    } else if (total >= 200000) {
+      descuento = 0.05;
+    }
+
+    if (descuento > 0) {
+      descuentoRow.style.display = "";
+      totalFinalRow.style.display = "";
+      const descuentoValor = total * descuento;
+      descuentoElem.textContent = `-$${descuentoValor.toLocaleString()}`;
+      totalFinalElem.textContent = `$${(total - descuentoValor).toLocaleString()}`;
+    } else {
+      descuentoRow.style.display = "none";
+      totalFinalRow.style.display = "none";
+    }
+  }
+
   document.getElementById("buscador").addEventListener("input", e => {
     const texto = e.target.value.toLowerCase();
     const filtrados = productos.filter(p => p.nombre.toLowerCase().includes(texto));
     mostrarProductos(filtrados);
   });
 
-  // Abrir modal si hay productos seleccionados
   document.getElementById("abrir-modal").addEventListener("click", () => {
-    const filas = Array.from(document.querySelectorAll("tbody tr"));
-    const seleccionados = filas.map(fila => {
-      const nombre = fila.cells[0].textContent;
-      const precio = parseFloat(fila.querySelector(".precio").textContent.replace(/[\$\.\,]/g, ""));
-      const cantidad = parseInt(fila.querySelector(".cantidad").value);
-      if (cantidad > 0) return { nombre, precio, cantidad, subtotal: precio * cantidad };
-    }).filter(Boolean);
-
+    const filas = Array.from(document.querySelectorAll("#tabla-productos tbody tr"));
+    const seleccionados = filas.filter(tr => Number(tr.querySelector("input.cantidad").value) > 0);
     if (seleccionados.length === 0) {
-      alert("Seleccioná al menos un producto");
+      alert("Seleccioná al menos un producto.");
       return;
     }
     document.getElementById("modal").style.display = "block";
   });
 
-  // Generar PDF y enviar mail
   document.getElementById("form-datos").addEventListener("submit", e => {
     e.preventDefault();
-
     const nombre = document.getElementById("nombre").value.trim();
     const telefono = document.getElementById("telefono").value.trim();
     const email = document.getElementById("email").value.trim();
     const direccion = document.getElementById("direccion").value.trim();
     const nota = document.getElementById("nota").value.trim();
 
-    const filas = Array.from(document.querySelectorAll("tbody tr"));
-    const productosSeleccionados = filas.map(fila => {
-      const nombre = fila.cells[0].textContent;
-      const precio = parseFloat(fila.querySelector(".precio").textContent.replace(/[\$\.\,]/g, ""));
-      const cantidad = parseInt(fila.querySelector(".cantidad").value);
-      if (cantidad > 0) return { nombre, precio, cantidad, subtotal: precio * cantidad };
+    const filas = Array.from(document.querySelectorAll("#tabla-productos tbody tr"));
+    const productosSeleccionados = filas.map(tr => {
+      const nombreP = tr.cells[0].textContent;
+      const precio = Number(tr.querySelector(".precio").textContent.replace(/[\$\.\,]/g, ""));
+      const cantidad = Number(tr.querySelector("input.cantidad").value);
+      if (cantidad > 0) {
+        return { nombre: nombreP, precio, cantidad, subtotal: precio * cantidad };
+      }
     }).filter(Boolean);
 
     const totalSinDescuento = productosSeleccionados.reduce((acc, p) => acc + p.subtotal, 0);
@@ -227,16 +287,15 @@
     const lines = doc.splitTextToSize(mensaje, pageWidth - 28);
     doc.text(lines, 14, y);
 
-    // Mostrar PDF en nueva pestaña
+    // Abrir PDF en pestaña nueva
     const blob = doc.output("blob");
     const url = URL.createObjectURL(blob);
     window.open(url, "_blank");
 
-    // Ocultar modal y resetear formulario
     document.getElementById("modal").style.display = "none";
     document.getElementById("form-datos").reset();
 
-    // Enviar por EmailJS
+    // Enviar mail con EmailJS
     const filasHtml = productosSeleccionados.map(p =>
       `<tr><td>${p.nombre}</td><td>${p.cantidad}</td><td>$${p.precio.toLocaleString()}</td><td>$${p.subtotal.toLocaleString()}</td></tr>`
     ).join("");
@@ -292,7 +351,6 @@
     }, 500);
   });
 
-  // Inicializar carga
   cargarProductos();
 </script>
 
