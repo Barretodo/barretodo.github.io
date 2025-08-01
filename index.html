@@ -405,8 +405,8 @@ function enviarPresupuestoPorEmail() {
     const direccion = document.getElementById("direccion").value;
     const nota = document.getElementById("nota").value;
 
-    const totalSinDescuento = parseFloat(document.getElementById("total-sin-descuento").innerText.replace(/[^\d\.]/g, ''));
-    const totalFinal = parseFloat(document.getElementById("total-final").innerText.replace(/[^\d\.]/g, ''));
+    const totalSinDescuento = parseFloat(document.getElementById("total-sin-descuento").innerText.replace(/[^\d\.]/g, '')) || 0;
+    const totalFinal = parseFloat(document.getElementById("total-final").innerText.replace(/[^\d\.]/g, '')) || 0;
     const descuentoAplicado = totalSinDescuento - totalFinal;
     const porcentajeDescuento = totalSinDescuento > 0 ? Math.round((descuentoAplicado / totalSinDescuento) * 100) : 0;
 
