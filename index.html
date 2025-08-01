@@ -70,6 +70,7 @@
     button:hover { background-color: #218838; }
 
   </style>
+
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 <script>
   (() => {
@@ -77,9 +78,10 @@
   })();
 </script>
 </head>
+
 <body style="background-color:#f4f4f4;">
-<div style="text-align:center;margin-top:20px;"><img alt="Logo" src="logo-barretodo.jpeg" width="180"/></div>
-<h1>Catálogo interactivo BARRETODO</h1>
+<div style="text-align:center;margin-top:20px;"><img src="logo-barretodo.jpeg" alt="Logo" width="180" /></div>
+   <h1>Catálogo interactivo BARRETODO</h1>
 <div class="mensaje-descuento">
   5% de descuento en compras mayores a $200.000 (SURTIDAS)<br/>
   10% de descuento en compras mayores a $300.000 (SURTIDAS)
@@ -131,6 +133,7 @@
 </table>
 </div>
 <div class="tab-content">
+
 <div style="text-align:center;margin:20px;"><input id="buscador-1" placeholder="Buscar en esta categoría..." style="width:90%;max-width:400px;padding:12px;font-size:16px;background:#fff;border:2px solid #ccc;border-radius:6px;box-shadow:0 2px 4px rgba(0,0,0,0.1);" type="text"/></div><table>
 <thead><tr class="producto"><th>Producto</th><th>Precio ($)</th><th>Cantidad</th><th>Subtotal</th></tr></thead>
 <tbody>
@@ -177,6 +180,7 @@
 </table>
 </div>
 <div class="tab-content">
+
 <div style="text-align:center;margin:20px;"><input id="buscador-2" placeholder="Buscar en esta categoría..." style="width:90%;max-width:400px;padding:12px;font-size:16px;background:#fff;border:2px solid #ccc;border-radius:6px;box-shadow:0 2px 4px rgba(0,0,0,0.1);" type="text"/></div><table>
 <thead><tr class="producto"><th>Producto</th><th>Precio ($)</th><th>Cantidad</th><th>Subtotal</th></tr></thead>
 <tbody>
@@ -249,6 +253,7 @@
 </table>
 </div>
 <div class="tab-content">
+
 <div style="text-align:center;margin:20px;"><input id="buscador-3" placeholder="Buscar en esta categoría..." style="width:90%;max-width:400px;padding:12px;font-size:16px;background:#fff;border:2px solid #ccc;border-radius:6px;box-shadow:0 2px 4px rgba(0,0,0,0.1);" type="text"/></div><table>
 <thead><tr class="producto"><th>Producto</th><th>Precio ($)</th><th>Cantidad</th><th>Subtotal</th></tr></thead>
 <tbody>
@@ -273,6 +278,7 @@
 </table>
 </div>
 <div class="tab-content">
+
 <div style="text-align:center;margin:20px;"><input id="buscador-4" placeholder="Buscar en esta categoría..." style="width:90%;max-width:400px;padding:12px;font-size:16px;background:#fff;border:2px solid #ccc;border-radius:6px;box-shadow:0 2px 4px rgba(0,0,0,0.1);" type="text"/></div><table>
 <thead><tr class="producto"><th>Producto</th><th>Precio ($)</th><th>Cantidad</th><th>Subtotal</th></tr></thead>
 <tbody>
@@ -299,7 +305,7 @@
 <span>Descuento aplicado: <strong id="descuento">-$0</strong></span>
 <span>Total final: <strong id="total-final">$0</strong></span>
 <div id="mensaje-desc" style="margin-top:10px; color:green;"></div>
-<button id="abrir-modal" onclick="generarPresupuesto(); enviarPresupuestoPorEmail();">Generar presupuesto</button>
+<button id="abrir-modal">Generar presupuesto</button>
 </div>
 <script>const tabs = document.querySelectorAll('.tab'); const contents = document.querySelectorAll('.tab-content'); tabs.forEach((tab, i) => { tab.addEventListener('click', () => { tabs.forEach(t => t.classList.remove('active')); contents.forEach(c => c.classList.remove('active')); tab.classList.add('active'); contents[i].classList.add('active'); }); }); tabs[0].click();</script>
 <script>
@@ -396,46 +402,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 </script>
-<script>
-function enviarPresupuestoPorEmail() {
-    const presupuestoHTML = document.getElementById("presupuesto-generado").innerHTML;
-    const nombre = document.getElementById("nombre").value;
-    const telefono = document.getElementById("telefono").value;
-    const email = document.getElementById("email").value;
-    const direccion = document.getElementById("direccion").value;
-    const nota = document.getElementById("nota").value;
-
-    const totalSinDescuento = parseFloat(document.getElementById("total-sin-descuento").innerText.replace(/[^\d\.]/g, '')) || 0;
-    const totalFinal = parseFloat(document.getElementById("total-final").innerText.replace(/[^\d\.]/g, '')) || 0;
-    const descuentoAplicado = totalSinDescuento - totalFinal;
-    const porcentajeDescuento = totalSinDescuento > 0 ? Math.round((descuentoAplicado / totalSinDescuento) * 100) : 0;
-
-    const infoCliente = `
-        <h2 style="margin-top: 30px;">PRESUPUESTO</h2>
-        ${presupuestoHTML}
-        <p><strong>Total sin descuento:</strong> $${totalSinDescuento.toLocaleString()}</p>
-        <p><strong>Descuento aplicado:</strong> -$${descuentoAplicado.toLocaleString()}</p>
-        <p><strong>Total final:</strong> $${totalFinal.toLocaleString()}</p>
-        <p><strong>Descuento aplicado:</strong> ${porcentajeDescuento}%</p>
-        <h3 style="margin-top: 30px;">Información de contacto del cliente</h3>
-        <p><strong>Nombre completo:</strong> ${nombre}</p>
-        <p><strong>Teléfono:</strong> ${telefono}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Dirección:</strong> ${direccion}</p>
-        ${nota ? `<p><strong>Nota:</strong> ${nota}</p>` : ""}
-    `;
-
-    emailjs.send("service_pm1p5tr", "template_lyjye95", {
-        mensaje_html: infoCliente
-    })
-    .then(function(response) {
-        console.log("Correo enviado", response.status, response.text);
-    }, function(error) {
-        console.error("Error al enviar el correo:", error);
-        alert("No se pudo enviar el mail. Revisá tu conexión o configuración.");
-    });
-}
-</script></body>
+</body>
 </html>
 <!-- Modal para completar datos del cliente -->
 <div id="modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:#00000088; z-index:1000;">
@@ -633,3 +600,4 @@ emailjs.send("service_pm1p5tr", "template_lyjye95", templateParams)
 
 });
 </script>
+
