@@ -6,52 +6,54 @@
 <title>Catálogo Barretodo</title>
 <style>
   body { font-family: Arial, sans-serif; margin: 20px; background: #f9f9f9; }
-  h1 { color: #007bff; text-align: center; }
-  #buscador { width: 100%; max-width: 400px; margin: 0 auto 20px; padding: 8px; font-size: 16px; border: 1px solid #ccc; border-radius: 4px; }
-  table { width: 100%; border-collapse: collapse; background: white; }
+  #logo { max-width: 200px; display: block; margin: 0 auto 20px; }
+  h1, h2, h3 { color: #007bff; text-align: center; }
+  #intro-text, #footer-text { max-width: 900px; margin: 0 auto 20px; font-size: 16px; color: #333; }
+  #buscador { width: 100%; max-width: 400px; margin: 0 auto 20px; padding: 8px; font-size: 16px; border: 1px solid #ccc; border-radius: 4px; display: block; }
+  table { width: 100%; border-collapse: collapse; background: white; margin-bottom: 30px; }
   th, td { padding: 12px; border-bottom: 1px solid #ddd; text-align: left; }
   th { background: #007bff; color: white; }
   input.cantidad { width: 60px; padding: 6px; }
   tfoot td { font-weight: bold; }
-  #totales-row td { background: #eee; }
-  button#abrir-modal { margin: 20px 0; padding: 12px 24px; background-color: #28a745; color: white; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; display: block; margin-left: auto; margin-right: auto;}
+  #totales-container { max-width: 900px; margin: 0 auto 40px; background: #f1f1f1; padding: 15px; border-radius: 8px; font-size: 18px; }
+  #totales-container span { font-weight: bold; }
+  button#abrir-modal { margin: 20px auto 40px; padding: 12px 24px; background-color: #28a745; color: white; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; display: block;}
   button#abrir-modal:hover { background-color: #218838; }
+  .categoria-titulo { background: #004085; color: white; padding: 10px; font-size: 18px; text-align: center; border-radius: 6px 6px 0 0; margin-top: 30px; }
+  .no-products { font-style: italic; color: #888; padding: 10px; text-align: center; }
 </style>
 </head>
 <body>
 
-<h1>Catálogo Barretodo</h1>
-<input type="text" id="buscador" placeholder="Buscar producto..." />
+<!-- Logo (poné la URL o base64 de tu logo acá) -->
+<img id="logo" src="https://yourdomain.com/path/to/logo.png" alt="Logo Barretodo" />
 
-<table id="tabla-productos">
-  <thead>
-    <tr>
-      <th>Producto</th>
-      <th>Precio Unitario</th>
-      <th>Cantidad</th>
-      <th>Subtotal</th>
-    </tr>
-  </thead>
-  <tbody>
-    <!-- Productos cargados desde JSON -->
-  </tbody>
-  <tfoot>
-    <tr id="totales-row">
-      <td colspan="3" style="text-align:right;">Total sin descuento:</td>
-      <td id="total-sin-descuento">$0</td>
-    </tr>
-    <tr id="descuento-row" style="display:none;">
-      <td colspan="3" style="text-align:right;">Descuento aplicado:</td>
-      <td id="descuento">$0</td>
-    </tr>
-    <tr id="total-final-row" style="display:none; font-weight:bold;">
-      <td colspan="3" style="text-align:right;">Total final:</td>
-      <td id="total-final">$0</td>
-    </tr>
-  </tfoot>
-</table>
+<!-- Texto de introducción arriba -->
+<div id="intro-text">
+  <p>Bienvenidos al catálogo oficial de BARRETODO. Aquí encontrarás una amplia variedad de productos para limpieza, higiene y descartables, organizados por categorías para facilitar tu compra. Aprovechá nuestros descuentos por volumen y pagá con todos los medios disponibles. Para consultas o pedidos personalizados, contactanos al WhatsApp 1151022954.</p>
+</div>
 
+<!-- Buscador -->
+<input type="text" id="buscador" placeholder="Buscar producto en todo el catálogo..." />
+
+<!-- Contenedor productos por categorías -->
+<div id="productos-container" style="max-width:900px; margin: 0 auto;"></div>
+
+<!-- Totales con descuento -->
+<div id="totales-container" style="display:none;">
+  <p>Total sin descuento: <span id="total-sin-descuento">$0</span></p>
+  <p id="descuento-line" style="display:none;">Descuento aplicado: <span id="descuento-porcentaje">0%</span> (-<span id="descuento-valor">$0</span>)</p>
+  <p style="font-size:20px; font-weight:bold;">Total final: <span id="total-final">$0</span></p>
+</div>
+
+<!-- Botón generar presupuesto -->
 <button id="abrir-modal">Generar Presupuesto</button>
+
+<!-- Texto fijo abajo -->
+<div id="footer-text" style="max-width:900px; margin: 0 auto; font-size: 14px; color:#666; border-top: 1px solid #ccc; padding-top: 20px; text-align:center;">
+  <p>AV. Hipólito Yrigoyen 3386, Almagro, CABA | Tel: 1151022954 (WhatsApp) | Todos los medios de pago | Envíos a todo CABA</p>
+  <p>¡Gracias por confiar en BARRETODO! Para consultas o pedidos, contactanos vía WhatsApp o mail.</p>
+</div>
 
 <!-- Modal datos cliente -->
 <div id="modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:#00000088; z-index:1000;">
@@ -79,38 +81,82 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
 <script>
-  emailjs.init("tu_userid_aqui"); // reemplazá con tu userid
+  emailjs.init("tu_userid_aqui"); // poné tu user id EmailJS acá
 
-  let productos = [];
+  let productosData = []; // Array con todos productos, para buscar
+  let categoriasData = []; // Para agrupar productos
 
   async function cargarProductos() {
     try {
       const resp = await fetch('productos.json');
       const data = await resp.json();
-      productos = data.categorias.flatMap(c =>
-        c.productos.map(p => ({ nombre: p.nombre, precio: Number(p.precio) }))
-      );
-      mostrarProductos(productos);
+      categoriasData = data.categorias;
+      productosData = [];
+      categoriasData.forEach(cat => {
+        cat.productos.forEach(prod => {
+          productosData.push({
+            categoria: cat.nombre,
+            nombre: prod.nombre,
+            precio: Number(prod.precio),
+          });
+        });
+      });
+      mostrarCategoriasYCarga(categoriasData);
+      actualizarTotales();
     } catch (e) {
       alert("Error cargando productos.json: " + e);
     }
   }
 
-  function mostrarProductos(lista) {
-    const tbody = document.querySelector("#tabla-productos tbody");
-    tbody.innerHTML = "";
-    lista.forEach(p => {
-      const tr = document.createElement("tr");
-      tr.innerHTML = `
-        <td>${p.nombre}</td>
-        <td class="precio">$${p.precio.toLocaleString()}</td>
-        <td><input type="number" min="0" value="0" class="cantidad" /></td>
-        <td class="subtotal">$0</td>
+  function mostrarCategoriasYCarga(categorias) {
+    const contenedor = document.getElementById('productos-container');
+    contenedor.innerHTML = '';
+
+    categorias.forEach(cat => {
+      // Título categoría
+      const tituloCat = document.createElement('h2');
+      tituloCat.classList.add('categoria-titulo');
+      tituloCat.textContent = cat.nombre;
+      contenedor.appendChild(tituloCat);
+
+      // Tabla productos categoría
+      const tabla = document.createElement('table');
+      tabla.classList.add('tabla-categoria');
+      tabla.innerHTML = `
+        <thead>
+          <tr>
+            <th>Producto</th>
+            <th>Precio Unitario</th>
+            <th>Cantidad</th>
+            <th>Subtotal</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
       `;
-      tbody.appendChild(tr);
+      contenedor.appendChild(tabla);
+
+      const tbody = tabla.querySelector('tbody');
+
+      if (cat.productos.length === 0) {
+        const noProd = document.createElement('tr');
+        noProd.classList.add('no-products');
+        noProd.innerHTML = `<td colspan="4">No hay productos en esta categoría.</td>`;
+        tbody.appendChild(noProd);
+      } else {
+        cat.productos.forEach(p => {
+          const tr = document.createElement('tr');
+          tr.innerHTML = `
+            <td>${p.nombre}</td>
+            <td class="precio">$${Number(p.precio).toLocaleString()}</td>
+            <td><input type="number" min="0" value="0" class="cantidad" /></td>
+            <td class="subtotal">$0</td>
+          `;
+          tbody.appendChild(tr);
+        });
+      }
     });
+
     agregarListenersCantidad();
-    actualizarTotales();
   }
 
   function agregarListenersCantidad() {
@@ -128,84 +174,121 @@
   }
 
   function actualizarTotales() {
-    const filas = Array.from(document.querySelectorAll("#tabla-productos tbody tr"));
+    const subtotalesElems = document.querySelectorAll(".subtotal");
     let total = 0;
-    filas.forEach(tr => {
-      const subtotalText = tr.querySelector(".subtotal").textContent.replace(/[\$\.\,]/g, "");
-      const subtotal = Number(subtotalText) || 0;
-      total += subtotal;
+    subtotalesElems.forEach(td => {
+      const val = Number(td.textContent.replace(/[\$\.\,]/g, ""));
+      total += isNaN(val) ? 0 : val;
     });
 
-    const totalSinDescuentoElem = document.getElementById("total-sin-descuento");
-    const descuentoRow = document.getElementById("descuento-row");
-    const descuentoElem = document.getElementById("descuento");
-    const totalFinalRow = document.getElementById("total-final-row");
+    const totalSinDescElem = document.getElementById("total-sin-descuento");
+    const descuentoLinea = document.getElementById("descuento-line");
+    const descuentoPorcentaje = document.getElementById("descuento-porcentaje");
+    const descuentoValorElem = document.getElementById("descuento-valor");
     const totalFinalElem = document.getElementById("total-final");
+    const totalesCont = document.getElementById("totales-container");
 
-    totalSinDescuentoElem.textContent = `$${total.toLocaleString()}`;
+    totalSinDescElem.textContent = `$${total.toLocaleString()}`;
 
     let descuento = 0;
-    if (total >= 300000) {
-      descuento = 0.10;
-    } else if (total >= 200000) {
-      descuento = 0.05;
-    }
+    if (total >= 300000) descuento = 10;
+    else if (total >= 200000) descuento = 5;
 
     if (descuento > 0) {
-      descuentoRow.style.display = "";
-      totalFinalRow.style.display = "";
-      const descuentoValor = total * descuento;
-      descuentoElem.textContent = `-$${descuentoValor.toLocaleString()}`;
-      totalFinalElem.textContent = `$${(total - descuentoValor).toLocaleString()}`;
+      descuentoLinea.style.display = "";
+      descuentoPorcentaje.textContent = `${descuento}%`;
+      const valorDesc = total * descuento / 100;
+      descuentoValorElem.textContent = `-$${valorDesc.toLocaleString()}`;
+      totalFinalElem.textContent = `$${(total - valorDesc).toLocaleString()}`;
     } else {
-      descuentoRow.style.display = "none";
-      totalFinalRow.style.display = "none";
+      descuentoLinea.style.display = "none";
+      totalFinalElem.textContent = "$0";
     }
+
+    totalesCont.style.display = total > 0 ? "" : "none";
   }
 
+  // Buscador: filtra las categorías y productos
   document.getElementById("buscador").addEventListener("input", e => {
     const texto = e.target.value.toLowerCase();
-    const filtrados = productos.filter(p => p.nombre.toLowerCase().includes(texto));
-    mostrarProductos(filtrados);
+
+    if (!texto) {
+      mostrarCategoriasYCarga(categoriasData);
+      return;
+    }
+
+    // Filtrar cada categoría
+    const categoriasFiltradas = categoriasData.map(cat => {
+      const productosFiltrados = cat.productos.filter(p => p.nombre.toLowerCase().includes(texto));
+      return { nombre: cat.nombre, productos: productosFiltrados };
+    }).filter(cat => cat.productos.length > 0);
+
+    mostrarCategoriasYCarga(categoriasFiltradas);
   });
 
+  // Botón Generar Presupuesto
   document.getElementById("abrir-modal").addEventListener("click", () => {
-    const filas = Array.from(document.querySelectorAll("#tabla-productos tbody tr"));
-    const seleccionados = filas.filter(tr => Number(tr.querySelector("input.cantidad").value) > 0);
-    if (seleccionados.length === 0) {
-      alert("Seleccioná al menos un producto.");
+    const cantidades = document.querySelectorAll("input.cantidad");
+    let algunProducto = false;
+    cantidades.forEach(input => {
+      if (Number(input.value) > 0) algunProducto = true;
+    });
+    if (!algunProducto) {
+      alert("Seleccioná al menos un producto para generar presupuesto.");
       return;
     }
     document.getElementById("modal").style.display = "block";
   });
 
+  // Formulario datos cliente y generación PDF + envío mail
   document.getElementById("form-datos").addEventListener("submit", e => {
     e.preventDefault();
+
     const nombre = document.getElementById("nombre").value.trim();
     const telefono = document.getElementById("telefono").value.trim();
     const email = document.getElementById("email").value.trim();
     const direccion = document.getElementById("direccion").value.trim();
     const nota = document.getElementById("nota").value.trim();
 
-    const filas = Array.from(document.querySelectorAll("#tabla-productos tbody tr"));
-    const productosSeleccionados = filas.map(tr => {
-      const nombreP = tr.cells[0].textContent;
-      const precio = Number(tr.querySelector(".precio").textContent.replace(/[\$\.\,]/g, ""));
-      const cantidad = Number(tr.querySelector("input.cantidad").value);
-      if (cantidad > 0) {
-        return { nombre: nombreP, precio, cantidad, subtotal: precio * cantidad };
-      }
-    }).filter(Boolean);
+    // Recolectar productos seleccionados
+    const seleccionados = [];
+    const tablas = document.querySelectorAll("#productos-container table");
+    tablas.forEach(tabla => {
+      const filas = tabla.querySelectorAll("tbody tr");
+      filas.forEach(tr => {
+        const cantidad = Number(tr.querySelector("input.cantidad").value);
+        if (cantidad > 0) {
+          const nombreP = tr.cells[0].textContent;
+          const precio = Number(tr.querySelector(".precio").textContent.replace(/[\$\.\,]/g, ""));
+          const subtotal = precio * cantidad;
+          seleccionados.push({ nombre: nombreP, cantidad, precio, subtotal });
+        }
+      });
+    });
 
-    const totalSinDescuento = productosSeleccionados.reduce((acc, p) => acc + p.subtotal, 0);
-    const descuento = totalSinDescuento >= 300000 ? 0.10 : totalSinDescuento >= 200000 ? 0.05 : 0;
-    const totalFinal = totalSinDescuento - (totalSinDescuento * descuento);
+    if (seleccionados.length === 0) {
+      alert("Seleccioná al menos un producto.");
+      return;
+    }
 
+    // Calcular totales y descuentos
+    const totalSinDescuento = seleccionados.reduce((acc, p) => acc + p.subtotal, 0);
+    let descuentoPct = 0;
+    if (totalSinDescuento >= 300000) descuentoPct = 10;
+    else if (totalSinDescuento >= 200000) descuentoPct = 5;
+    const valorDescuento = totalSinDescuento * descuentoPct / 100;
+    const totalFinal = totalSinDescuento - valorDescuento;
+
+    // Generar PDF con jsPDF
     const { jsPDF } = window.jspdf;
     const doc = new jsPDF();
     const pageWidth = doc.internal.pageSize.getWidth();
     let y = 20;
 
+    // Logo (opcional)
+    // doc.addImage("URL_o_base64_de_logo", "PNG", 14, 10, 50, 15);
+
+    // Título
     doc.setFillColor(0, 123, 255);
     doc.rect(0, 0, pageWidth, 20, "F");
     doc.setTextColor(255, 255, 255);
@@ -216,6 +299,7 @@
     doc.setTextColor(0, 0, 0);
     y += 10;
 
+    // Datos cliente y fecha
     doc.setFontSize(11);
     doc.text(`Fecha: ${new Date().toLocaleDateString()}`, 14, y += 10);
     doc.text(`Nombre: ${nombre}`, 14, y += 8);
@@ -223,12 +307,14 @@
     doc.text(`Email: ${email}`, 14, y += 8);
     doc.text(`Dirección: ${direccion}`, 14, y += 8);
     if (nota) {
-      const notaLines = doc.splitTextToSize(`Nota: ${nota}`, pageWidth - 28);
-      doc.text(notaLines, 14, y += 8);
-      y += notaLines.length * 5;
+      const lines = doc.splitTextToSize(`Nota: ${nota}`, pageWidth - 28);
+      doc.text(lines, 14, y += 8);
+      y += lines.length * 5;
     }
 
     y += 10;
+
+    // Encabezados tabla
     doc.setFontSize(12);
     doc.text("Producto", 14, y);
     doc.text("Cant.", 120, y, { align: "right" });
@@ -241,7 +327,9 @@
     y += 5;
 
     doc.setFontSize(11);
-    productosSeleccionados.forEach(p => {
+
+    // Productos seleccionados
+    seleccionados.forEach(p => {
       if (y > 270) {
         doc.addPage();
         y = 20;
@@ -258,101 +346,4 @@
     doc.line(14, y, pageWidth - 14, y);
     y += 10;
     doc.setFontSize(12);
-    doc.text("TOTAL SIN DESCUENTO:", 14, y);
-    doc.text(`$${totalSinDescuento.toLocaleString()}`, pageWidth - 14, y, { align: "right" });
-
-    if (descuento > 0) {
-      y += 8;
-      doc.text(`DESCUENTO APLICADO (${descuento * 100}%):`, 14, y);
-      doc.text(`-$${(totalSinDescuento * descuento).toLocaleString()}`, pageWidth - 14, y, { align: "right" });
-    }
-
-    y += 8;
-    doc.setFont("helvetica", "bold");
-    doc.text("TOTAL FINAL:", 14, y);
-    doc.text(`$${totalFinal.toLocaleString()}`, pageWidth - 14, y, { align: "right" });
-
-    y += 15;
-    doc.setFont("helvetica", "normal");
-    doc.setFontSize(10);
-    doc.text("Este presupuesto tiene validez de 48 horas.", pageWidth - 14, y += 5, { align: "right" });
-    doc.text("AV. Hipolito Yrigoyen 3386, Almagro, CABA", 14, y += 6);
-    doc.text("1151022954 (Escribinos por acá)", 14, y += 6);
-    doc.text("Todos los medios de pago", 14, y += 6);
-    doc.text("Envíos a todo CABA", 14, y += 6);
-    y += 15;
-    doc.setFontSize(10);
-    doc.setTextColor(50);
-    const mensaje = "Para gestionar la compra, por favor contactate con nosotros vía WhatsApp al 1151022954 o por correo electrónico a contacto.barretodo@gmail.com y envianos el archivo generado.";
-    const lines = doc.splitTextToSize(mensaje, pageWidth - 28);
-    doc.text(lines, 14, y);
-
-    // Abrir PDF en pestaña nueva
-    const blob = doc.output("blob");
-    const url = URL.createObjectURL(blob);
-    window.open(url, "_blank");
-
-    document.getElementById("modal").style.display = "none";
-    document.getElementById("form-datos").reset();
-
-    // Enviar mail con EmailJS
-    const filasHtml = productosSeleccionados.map(p =>
-      `<tr><td>${p.nombre}</td><td>${p.cantidad}</td><td>$${p.precio.toLocaleString()}</td><td>$${p.subtotal.toLocaleString()}</td></tr>`
-    ).join("");
-
-    const mensaje_html = `
-      <h2 style="color:#007bff;">PRESUPUESTO BARRETODO</h2>
-      <p><strong>Fecha:</strong> ${new Date().toLocaleDateString()}</p>
-      <table border="1" cellpadding="6" cellspacing="0" style="border-collapse:collapse; width:100%;">
-        <thead>
-          <tr>
-            <th>Producto</th>
-            <th>Cantidad</th>
-            <th>Precio Unit.</th>
-            <th>Subtotal</th>
-          </tr>
-        </thead>
-        <tbody>
-          ${filasHtml}
-        </tbody>
-      </table>
-      <p><strong>Total sin descuento:</strong> $${totalSinDescuento.toLocaleString()}</p>
-      <p><strong>Descuento aplicado:</strong> ${descuento * 100}% (-$${(totalSinDescuento * descuento).toLocaleString()})</p>
-      <p><strong>Total final:</strong> $${totalFinal.toLocaleString()}</p>
-      <h3 style="margin-top:30px;">Información de contacto del cliente</h3>
-      <p><strong>Nombre:</strong> ${nombre}</p>
-      <p><strong>Teléfono:</strong> ${telefono}</p>
-      <p><strong>Email:</strong> ${email}</p>
-      <p><strong>Dirección:</strong> ${direccion}</p>
-      ${nota ? `<p><strong>Nota:</strong> ${nota}</p>` : ""}
-    `;
-
-    const templateParams = {
-      nombre,
-      telefono,
-      email,
-      direccion,
-      nota,
-      mensaje_html,
-      reply_to: email
-    };
-
-    emailjs.send("service_pm1p5tr", "template_lyjye95", templateParams)
-      .then(() => alert("Presupuesto enviado por mail correctamente."))
-      .catch(error => {
-        console.error("EmailJS error:", error);
-        alert("Error al enviar el mail: " + (error.text || JSON.stringify(error)));
-      });
-
-    // Abrir WhatsApp con mensaje
-    const msg = encodeURIComponent("Hola! Te estoy contactando por este presupuesto que acabo de generar desde el catálogo BARRETODO.");
-    setTimeout(() => {
-      window.open("https://wa.me/541151022954?text=" + msg, "_blank");
-    }, 500);
-  });
-
-  cargarProductos();
-</script>
-
-</body>
-</html>
+   
