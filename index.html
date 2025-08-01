@@ -70,7 +70,6 @@
     button:hover { background-color: #218838; }
 
   </style>
-
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 <script>
   (() => {
@@ -78,10 +77,9 @@
   })();
 </script>
 </head>
-
 <body style="background-color:#f4f4f4;">
-<div style="text-align:center;margin-top:20px;"><img src="logo-barretodo.jpeg" alt="Logo" width="180" /></div>
-   <h1>Catálogo interactivo BARRETODO</h1>
+<div style="text-align:center;margin-top:20px;"><img alt="Logo" src="logo-barretodo.jpeg" width="180"/></div>
+<h1>Catálogo interactivo BARRETODO</h1>
 <div class="mensaje-descuento">
   5% de descuento en compras mayores a $200.000 (SURTIDAS)<br/>
   10% de descuento en compras mayores a $300.000 (SURTIDAS)
@@ -92,28 +90,12 @@
 <div class="tab">HERRAMIENTAS LIMPIEZA</div>
 <div class="tab">AROMATIZACION</div>
 <div class="tab">INSECTICIDAS</div>
-</div>
-<table>
-<thead><tr class="producto"><th>Producto</th><th>Precio ($)</th><th>Cantidad</th><th>Subtotal</th></tr></thead>
-<tbody>
-<tr class="producto"><td>RAID M Y M SIN OLOR</td><td class="precio">6790</td><td><input class="cantidad" min="0" type="number" value="0"/></td><td class="subtotal">$0</td></tr>
-<tr class="producto"><td>RAID M Y M</td><td class="precio">6190</td><td><input class="cantidad" min="0" type="number" value="0"/></td><td class="subtotal">$0</td></tr>
-<tr class="producto"><td>RAID CUCARACHAS</td><td class="precio">4750</td><td><input class="cantidad" min="0" type="number" value="0"/></td><td class="subtotal">$0</td></tr>
-<tr class="producto"><td>SELTON CASA Y JARDIN MYM</td><td class="precio">4100</td><td><input class="cantidad" min="0" type="number" value="0"/></td><td class="subtotal">$0</td></tr>
-<tr class="producto"><td>X5 CUCARACHAS</td><td class="precio">3300</td><td><input class="cantidad" min="0" type="number" value="0"/></td><td class="subtotal">$0</td></tr>
-<tr class="producto"><td>MOSQUI TRAP MYM</td><td class="precio">3100</td><td><input class="cantidad" min="0" type="number" value="0"/></td><td class="subtotal">$0</td></tr>
-<tr class="producto"><td>RAID TABLETAS MATAMOSQ</td><td class="precio">3290</td><td><input class="cantidad" min="0" type="number" value="0"/></td><td class="subtotal">$0</td></tr>
-<tr class="producto"><td>ESPIRAL RAID 12 NOCHES CAJA 150GRM</td><td class="precio">3500</td><td><input class="cantidad" min="0" type="number" value="0"/></td><td class="subtotal">$0</td></tr>
-<tr class="producto"><td>APARATO TABLETA Y LIQUIDO MOSQUITOS</td><td class="precio">3290</td><td><input class="cantidad" min="0" type="number" value="0"/></td><td class="subtotal">$0</td></tr>
-<tr class="producto"><td>OFF</td><td class="precio">6990</td><td><input class="cantidad" min="0" type="number" value="0"/></td><td class="subtotal">$0</td></tr>
-<tr class="producto"><td>PALMETA MATA MOSCAS</td><td class="precio">1490</td><td><input class="cantidad" min="0" type="number" value="0"/></td><td class="subtotal">$0</td></tr>
-<tr class="producto"><td>OFF CREMA</td><td class="precio">4990</td><td><input class="cantidad" min="0" type="number" value="0"/></td><td class="subtotal">$0</td></tr>
-<tr class="producto"><td>DERRIBANTE (RINDE 10L)</td><td class="precio">6990</td><td><input class="cantidad" min="0" type="number" value="0"/></td><td class="subtotal">$0</td></tr>
-<tr class="producto"><td>DERRIBANTE (RINDE 100L)</td><td class="precio">59990</td><td><input class="cantidad" min="0" type="number" value="0"/></td><td class="subtotal">$0</td></tr>
-<tr class="producto"><td>REPELENTE NATURAL CITRONELLA 100ml</td><td class="precio">2990</td><td><input class="cantidad" min="0" type="number" value="0"/></td><td class="subtotal">$0</td></tr>
-</tbody>
-</table>
-</div>
+</div><div id="contenedor-categorias"></div>
+
+
+
+
+
 <div class="resumen">
 <span>Total sin descuento: <strong id="sin-descuento">$0</strong></span>
 <span>Descuento aplicado: <strong id="descuento">-$0</strong></span>
@@ -121,7 +103,7 @@
 <div id="mensaje-desc" style="margin-top:10px; color:green;"></div>
 <button id="abrir-modal">Generar presupuesto</button>
 </div>
-<script>const tabs = document.querySelectorAll('.tab'); const contents = document.querySelectorAll('.tab-content'); tabs.forEach((tab, i) => { tab.addEventListener('click', () => { tabs.forEach(t => t.classList.remove('active')); contents.forEach(c => c.classList.remove('active')); tab.classList.add('active'); contents[i].classList.add('active'); }); }); tabs[0].click();</script>
+
 <script>
 function actualizarTotales() {
   let totalSinDescuento = 0;
@@ -216,83 +198,83 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 </script>
-
 <script>
 async function cargarCatalogo() {
-  const respuesta = await fetch('productos.json');
-  const datos = await respuesta.json();
+  const response = await fetch('productos.json');
+  const data = await response.json();
+  const tabs = document.querySelector('.tabs');
+  const container = document.getElementById('contenedor-categorias');
 
-  const contenedorTabs = document.querySelector('.tabs');
-  const contenedorPrincipal = document.querySelector('body');
-
-  // Insertar tabs y contenidos
-  datos.categorias.forEach((categoria, i) => {
+  data.categorias.forEach((categoria, index) => {
     // Crear tab
     const tab = document.createElement('div');
     tab.className = 'tab';
     tab.textContent = categoria.nombre;
-    contenedorTabs.appendChild(tab);
+    tabs.appendChild(tab);
 
-    // Crear contenido de tab
-    const contenido = document.createElement('div');
-    contenido.className = 'tab-content';
-    const buscador = document.createElement('div');
-    buscador.innerHTML = '<div style="text-align:center;margin:20px;"><input id="buscador-' + i + '" placeholder="Buscar en esta categoría..." style="width:90%;max-width:400px;padding:12px;font-size:16px;background:#fff;border:2px solid #ccc;border-radius:6px;box-shadow:0 2px 4px rgba(0,0,0,0.1);" type="text"/></div>';
-    const tabla = document.createElement('table');
-    tabla.innerHTML = '<thead><tr class="producto"><th>Producto</th><th>Precio ($)</th><th>Cantidad</th><th>Subtotal</th></tr></thead><tbody></tbody>';
-    const tbody = tabla.querySelector('tbody');
-
-    categoria.productos.forEach(producto => {
-      const fila = document.createElement('tr');
-      fila.className = 'producto';
-      fila.innerHTML = `
-        <td>${producto.nombre}</td>
-        <td class="precio">${producto.precio}</td>
-        <td><input class="cantidad" min="0" type="number" value="0" /></td>
-        <td class="subtotal">$0</td>
-      `;
-      tbody.appendChild(fila);
-    });
-
-    contenido.appendChild(buscador);
-    contenido.appendChild(tabla);
-    contenedorTabs.insertAdjacentElement('afterend', contenido);
+    // Crear contenido
+    const tabContent = document.createElement('div');
+    tabContent.className = 'tab-content';
+    tabContent.innerHTML = `
+      <div style="text-align:center;margin:20px;">
+        <input id="buscador-${index}" placeholder="Buscar en esta categoría..." 
+               style="width:90%;max-width:400px;padding:12px;font-size:16px;background:#fff;
+                      border:2px solid #ccc;border-radius:6px;box-shadow:0 2px 4px rgba(0,0,0,0.1);"
+               type="text"/>
+      </div>
+      <table>
+        <thead>
+          <tr class="producto">
+            <th>Producto</th><th>Precio ($)</th><th>Cantidad</th><th>Subtotal</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${categoria.productos.map(prod => `
+            <tr class="producto">
+              <td>${prod.nombre}</td>
+              <td class="precio">${prod.precio}</td>
+              <td><input class="cantidad" min="0" type="number" value="0"/></td>
+              <td class="subtotal">$0</td>
+            </tr>`).join('')}
+        </tbody>
+      </table>
+    `;
+    container.appendChild(tabContent);
   });
 
-  // Reaplicar scripts de tabs y buscadores
-  const tabs = document.querySelectorAll('.tab');
-  const contents = document.querySelectorAll('.tab-content');
-  tabs.forEach((tab, i) => {
+  // Funcionalidad de tabs
+  const allTabs = document.querySelectorAll('.tab');
+  const allContents = document.querySelectorAll('.tab-content');
+  allTabs.forEach((tab, i) => {
     tab.addEventListener('click', () => {
-      tabs.forEach(t => t.classList.remove('active'));
-      contents.forEach(c => c.classList.remove('active'));
+      allTabs.forEach(t => t.classList.remove('active'));
+      allContents.forEach(c => c.classList.remove('active'));
       tab.classList.add('active');
-      contents[i].classList.add('active');
+      allContents[i].classList.add('active');
     });
   });
-  tabs[0]?.click();
+  allTabs[0]?.click();
 
-  contents.forEach((contenido, i) => {
-    const input = contenido.querySelector(`#buscador-${i}`);
-    const filas = contenido.querySelectorAll('tbody tr');
+  // Buscadores
+  allContents.forEach((content, i) => {
+    const input = content.querySelector(`#buscador-${i}`);
+    const rows = content.querySelectorAll('tbody tr');
     input.addEventListener('input', () => {
-      const filtro = input.value.toLowerCase();
-      filas.forEach(fila => {
-        const texto = fila.children[0].textContent.toLowerCase();
-        fila.style.display = texto.includes(filtro) ? '' : 'none';
+      const val = input.value.toLowerCase();
+      rows.forEach(row => {
+        const name = row.children[0].textContent.toLowerCase();
+        row.style.display = name.includes(val) ? "" : "none";
       });
     });
   });
 
-  // Activar cálculo de totales dinámico
+  // Subtotales y totales
   document.querySelectorAll('.cantidad').forEach(input => {
     input.addEventListener('input', actualizarTotales);
   });
 }
 window.addEventListener('DOMContentLoaded', cargarCatalogo);
-</script>
-
-</body>
+</script></body>
 </html>
 <!-- Modal para completar datos del cliente -->
 <div id="modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:#00000088; z-index:1000;">
