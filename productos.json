@@ -86,11 +86,16 @@
     {
       "nombre": "DISPENSER",
       "productos": [
-        { "nombre": "DISPENSER BOBINA PVC", "precio": "26990" },
-        { "nombre": "DISPENSER PH ALTO METRAJE PVC GOTITA", "precio": "19990" },
+        { "nombre": "DISPENSER BOBINA SIN MECANISMO PVC", "precio": "29990" },
+        { "nombre": "DISPENSER BOBINA SIN MECANISMO ACERO INOXIDABLE", "precio": "139990" },
+        { "nombre": "DISPENSER BOBINA PALANCA GOTITA", "precio": "99990" },
+        { "nombre": "DISPENSER BOBINA AUTO CUT GOTITA", "precio": "139990" },
+        { "nombre": "DISPENSER BOBINA SENSOR", "precio": "269990" },
+        { "nombre": "DISPENSER PH ALTO METRAJE ACERO INOXIDABLE", "precio": "89990" },
+        { "nombre": "DISPENSER PH ALTO METRAJE PVC GOTITA", "precio": "22990" },
         { "nombre": "DISPENSER PH ALTO METRAJE PVC DELUX", "precio": "19990" },
-        { "nombre": "DISPENSER PH ALTO METRAJE ACERO INOX Y PVC", "precio": "49990" },
-        { "nombre": "DISPENSER PH ALTO METRAJE ACERO INOXIDABLE", "precio": "69990" }
+        { "nombre": "DISPENSER PH ALTO METRAJE ACERO INOX Y PVC", "precio": "59990" },
+        { "nombre": "DISPENSER PH ALTO METRAJE ACERO INOXIDABLE", "precio": "89990" }
       ]
     },
     {
@@ -207,4 +212,5 @@
     }
   ]
 }
+
 
