@@ -82,6 +82,17 @@
         { "nombre": "PERFUMINA TEXTIL 1L", "precio": "8990" }
       ]
     },
+
+    {
+      "nombre": "DISPENSER",
+      "productos": [
+        { "nombre": "DISPENSER BOBINA PVC", "precio": "26990" },
+        { "nombre": "DISPENSER PH ALTO METRAJE PVC GOTITA", "precio": "19990" },
+        { "nombre": "DISPENSER PH ALTO METRAJE PVC DELUX", "precio": "19990" },
+        { "nombre": "DISPENSER PH ALTO METRAJE ACERO INOX Y PVC", "precio": "49990" },
+        { "nombre": "DISPENSER PH ALTO METRAJE ACERO INOXIDABLE", "precio": "69990" }
+      ]
+    },
     {
       "nombre": "HERRAMIENTAS LIMPIEZA",
       "productos": [
@@ -196,3 +207,4 @@
     }
   ]
 }
+
