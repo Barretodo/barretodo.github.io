@@ -347,7 +347,7 @@ document.getElementById("form-datos").addEventListener("submit", function(e) {
     }).filter(Boolean);
 
   const totalSinDescuento = productosSeleccionados.reduce((acc, p) => acc + p.subtotal, 0);
-  const descuento = totalSinDescuento >= 300000 ? 0.10 : totalSinDescuento >= 200000 ? 0.05 : 0;
+  const descuento = totalSinDescuento >= 500000 ? 0.10 : totalSinDescuento >= 250000 ? 0.05 : 0;
   const totalFinal = totalSinDescuento - (totalSinDescuento * descuento);
 
   const { jsPDF } = window.jspdf;
