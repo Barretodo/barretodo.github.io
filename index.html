@@ -92,8 +92,8 @@
 <div style="text-align:center;margin-top:20px;"><img alt="Logo" src="logo-barretodo.jpeg" width="180"/></div>
 <h1>Catálogo interactivo BARRETODO</h1>
 <div class="mensaje-descuento">
-  5% de descuento en compras mayores a $200.000 (SURTIDAS)<br/>
-  10% de descuento en compras mayores a $300.000 (SURTIDAS)
+  5% de descuento en compras mayores a $250.000 (SURTIDAS)<br/>
+  10% de descuento en compras mayores a $500.000 (SURTIDAS)
 </div>
    <div class="mensaje-guia">
   Filtrar entre categorias buscando productos y cantidades<br/>
@@ -127,10 +127,10 @@ function actualizarTotales() {
 
   let descuento = 0;
   let mensaje = "";
-  if (totalSinDescuento >= 300000) {
+  if (totalSinDescuento >= 500000) {
     descuento = 0.10;
     mensaje = "Descuento aplicado: 10%";
-  } else if (totalSinDescuento >= 200000) {
+  } else if (totalSinDescuento >= 250000) {
     descuento = 0.05;
     mensaje = "Descuento aplicado: 5%";
   }
