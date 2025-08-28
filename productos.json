@@ -67,7 +67,7 @@
         { "nombre": "BICARBONATO DE SODIO 5kg", "precio": "39990" },
         { "nombre": "VINAGRE DE LIMPIEZA 5L", "precio": "8360" },
         { "nombre": "REPELENTE NATURAL CITRONELA 1L", "precio": "17690" },
-        { "nombre": "PERFUMINA TEXTIL 1L", "precio": "8990" }
+        { "nombre": "PERFUMINA TEXTIL 1L", "precio": "8990" },
         { "nombre": "PERFUMINA TEXTIL 5L", "precio": "34990" },
         { "nombre": "CLORO 5L", "precio": "5990" },
         { "nombre": "DESENGRASANTE ECOLOGICO 1L (LIQUIDO)", "precio": "3200" },
@@ -77,7 +77,7 @@
         { "nombre": "ALCOHOL 70/96 1L", "precio": "2990" },
         { "nombre": "ALCOHOL EN GEL 1L", "precio": "3990" },
         { "nombre": "DERRIBANTE (RINDE 10L)", "precio": "6990" },
-        { "nombre": "DERRIBANTE (RINDE 100L)", "precio": "59990" },
+        { "nombre": "DERRIBANTE (RINDE 100L)", "precio": "59990" }
       ]
     },
 
@@ -218,6 +218,7 @@
     }
   ]
 }
+
 
 
 
