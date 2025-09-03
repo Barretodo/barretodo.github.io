@@ -170,18 +170,18 @@
     {
       "nombre": "AROMATIZACION",
       "productos": [
-        { "nombre": "GLADE AEROSOL", "precio": "2990" },
+        { "nombre": "GLADE AEROSOL", "precio": "3490" },
         { "nombre": "SAHUMERIO ESFERAS", "precio": "1490" },
         { "nombre": "SAHUMERIO PALITO", "precio": "1590" },
         { "nombre": "SAHUMERIO PREMIUM", "precio": "2590" },
-        { "nombre": "AROMATIZADOR TEXTIL SAPAPEL HIGIENICOIRUS", "precio": "3790" },
-        { "nombre": "AEROSOL SAPAPEL HIGIENICOIRUS", "precio": "5390" },
-        { "nombre": "DIFUSOR SAPAPEL HIGIENICOIRUS", "precio": "5990" },
+        { "nombre": "AROMATIZADOR TEXTIL SAPHIRUS", "precio": "3790" },
+        { "nombre": "AEROSOL SAPHIRUS", "precio": "5390" },
+        { "nombre": "DIFUSOR SAPHIRUS", "precio": "5990" },
         { "nombre": "VARILLA DIFUSOR 6u", "precio": "1790" },
         { "nombre": "VARILLA DIFUSOR NEGRA 6u", "precio": "1990" },
         { "nombre": "EQUIPO AROMATIZADOR", "precio": "15990" },
-        { "nombre": "SAPAPEL HIGIENICOIRUS TOUCH", "precio": "5490" },
-        { "nombre": "AROMATIZADOR AUTO SAPAPEL HIGIENICOIRUS", "precio": "4990" },
+        { "nombre": "SAPHIRUS TOUCH", "precio": "5490" },
+        { "nombre": "AROMATIZADOR AUTO SAPHIRUS", "precio": "4990" },
         { "nombre": "DIFUSOR AUTO", "precio": "7190" },
         { "nombre": "ACEITES P. HORNITOS", "precio": "2490" },
         { "nombre": "VELAS LARGAS", "precio": "990" },
@@ -201,8 +201,7 @@
         { "nombre": "RAID TABLETAS MATAMOSQ", "precio": "3290" },
         { "nombre": "ESPIRAL RAID 12 NOCHES CAJA 150GRM", "precio": "3500" },
         { "nombre": "APARATO TABLETA Y LIQUIDO MOSQUITOS", "precio": "3290" },
-        { "nombre": "OFF", "precio": "6990" },
-        { "nombre": "PALMETA MATA MOSCAS", "precio": "1490" },
+        { "nombre": "OFF AEROSOL", "precio": "6990" },
         { "nombre": "OFF CREMA", "precio": "4990" },
         { "nombre": "DERRIBANTE (RINDE 10L)", "precio": "6990" },
         { "nombre": "DERRIBANTE (RINDE 100L)", "precio": "59990" },
@@ -211,6 +210,7 @@
     }
   ]
 }
+
 
 
 
