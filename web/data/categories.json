@@ -1,0 +1,73 @@
+{
+  "categories": [
+    {
+      "key": "descartables",
+      "title": "DESCARTABLES",
+      "image": "assets/img/cat.svg",
+      "description": "Línea de descartables para higiene y gastronomía.",
+      "items": [
+        "Bolson papel higiénico 30 rollos (distintos metrajes)",
+        "Toallas intercaladas y de rollo",
+        "Servilletas y manteles",
+        "Bolsas de residuos",
+        "Guantes y cofias"
+      ]
+    },
+    {
+      "key": "concentrados",
+      "title": "CONCENTRADOS",
+      "image": "assets/img/cat.svg",
+      "description": "Químicos concentrados de alto rendimiento.",
+      "items": [
+        "Desengrasante industrial",
+        "Desinfectante multiuso",
+        "Lavandina concentrada",
+        "Limpiador de pisos"
+      ]
+    },
+    {
+      "key": "dispenser",
+      "title": "DISPENSER",
+      "image": "assets/img/cat.svg",
+      "description": "Dispensadores de jabón, toallas y papel.",
+      "items": [
+        "Dispenser de jabón",
+        "Toallero intercalado",
+        "Portarrollos"
+      ]
+    },
+    {
+      "key": "herramientas",
+      "title": "HERRAMIENTAS LIMPIEZA",
+      "image": "assets/img/cat.svg",
+      "description": "Implementos durables.",
+      "items": [
+        "Escobas y mopas",
+        "Baldes y carros",
+        "Paños y fibras"
+      ]
+    },
+    {
+      "key": "aromatizacion",
+      "title": "AROMATIZACION",
+      "image": "assets/img/cat.svg",
+      "description": "Aromas para comercios y hogares.",
+      "items": [
+        "Aerosoles y difusores",
+        "Saphirus y similares",
+        "Perfuminas"
+      ]
+    },
+    {
+      "key": "insecticidas",
+      "title": "INSECTICIDAS",
+      "image": "assets/img/cat.svg",
+      "description": "Control de plagas.",
+      "items": [
+        "Insecticida aerosol",
+        "Repelentes",
+        "Trampas"
+      ]
+    }
+  ]
+}
