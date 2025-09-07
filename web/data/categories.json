@@ -1,0 +1,74 @@
+{
+  "categories": [
+    {
+      "key": "descartables",
+      "title": "DESCARTABLES",
+      "image": "assets/img/descartables.svg",
+      "description": "Línea completa de descartables para higiene y gastronomía.",
+      "items": [
+        "Bolson papel higiénico 30 rollos (distintos metrajes)",
+        "Toallas intercaladas y rollo",
+        "Bolsas consorcio y residuos",
+        "Servilletas y manteles",
+        "Guantes, cofias, barbijos"
+      ]
+    },
+    {
+      "key": "concentrados",
+      "title": "CONCENTRADOS",
+      "image": "assets/img/concentrados.svg",
+      "description": "Químicos concentrados de alto rendimiento para uso profesional.",
+      "items": [
+        "Desengrasante industrial",
+        "Desinfectante multiuso",
+        "Jabón/detergente concentrado",
+        "Lavandina/cloro concentrado",
+        "Limpiador de pisos y superficies"
+      ]
+    },
+    {
+      "key": "dispenser",
+      "title": "DISPENSER",
+      "image": "assets/img/dispenser.svg",
+      "description": "Dispensadores de jabón, toallas y papel. Instalación y repuestos.",
+      "items": [
+        "Dispenser de jabón líquido/espuma",
+        "Toallero intercalado y de rollo",
+        "Papelera y porta rollo"
+      ]
+    },
+    {
+      "key": "herramientas",
+      "title": "HERRAMIENTAS LIMPIEZA",
+      "image": "assets/img/herramientas.svg",
+      "description": "Implementos durables para limpieza profesional y doméstica.",
+      "items": [
+        "Escobas, mopas y palas",
+        "Baldes y carros",
+        "Paños, fibras y esponjas"
+      ]
+    },
+    {
+      "key": "aromatizacion",
+      "title": "AROMATIZACION",
+      "image": "assets/img/aromatizacion.svg",
+      "description": "Aromas para comercios y hogares.",
+      "items": [
+        "Aerosoles y difusores",
+        "Saphirus y similares",
+        "Perfuminas y desodorizantes"
+      ]
+    },
+    {
+      "key": "insecticidas",
+      "title": "INSECTICIDAS",
+      "image": "assets/img/insecticidas.svg",
+      "description": "Control de plagas para uso doméstico y comercial.",
+      "items": [
+        "Insecticida aerosol",
+        "Repelentes",
+        "Portacebos y trampas"
+      ]
+    }
+  ]
+}
