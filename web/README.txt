@@ -1,1 +1,0 @@
-Subí todos estos archivos al root de tu hosting (GitHub Pages o servidor).
