@@ -1,0 +1,52 @@
+{
+  "products": [
+    {
+      "category": "detergentes",
+      "name": "Detergente concentrado",
+      "size": "5 L",
+      "image": "https://images.unsplash.com/photo-1581578017422-3ca14f32901c?q=80&w=800&auto=format&fit=crop"
+    },
+    {
+      "category": "detergentes",
+      "name": "Jabón líquido para ropa",
+      "size": "Ropa blanca/color",
+      "image": "https://images.unsplash.com/photo-1556228720-195a672e8a03?q=80&w=800&auto=format&fit=crop"
+    },
+    {
+      "category": "lavandina",
+      "name": "Lavandina clásica",
+      "size": "1 y 5 L",
+      "image": "https://images.unsplash.com/photo-1629197521861-4d9a22d59998?q=80&w=800&auto=format&fit=crop"
+    },
+    {
+      "category": "desinfectantes",
+      "name": "Desinfectante multiuso",
+      "size": "Aromas varios",
+      "image": "https://images.unsplash.com/photo-1587015191370-30c45fb3ab0d?q=80&w=800&auto=format&fit=crop"
+    },
+    {
+      "category": "suavizantes",
+      "name": "Suavizante para ropa",
+      "size": "1 y 3 L",
+      "image": "https://images.unsplash.com/photo-1580501171122-978c37c94a53?q=80&w=800&auto=format&fit=crop"
+    },
+    {
+      "category": "accesorios",
+      "name": "Escobillón premium",
+      "size": "Varios colores",
+      "image": "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=80&w=800&auto=format&fit=crop"
+    },
+    {
+      "category": "accesorios",
+      "name": "Trapos de piso",
+      "size": "Algodón grueso",
+      "image": "https://images.unsplash.com/photo-1609848177631-5bf45e41cf40?q=80&w=800&auto=format&fit=crop"
+    },
+    {
+      "category": "accesorios",
+      "name": "Guantes de nitrilo",
+      "size": "Talles S–XL",
+      "image": "https://images.unsplash.com/photo-1515378960530-7c0da6231fb1?q=80&w=800&auto=format&fit=crop"
+    }
+  ]
+}
