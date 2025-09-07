@@ -1,0 +1,12 @@
+body{font-family:sans-serif;margin:0;padding:0;background:#f8f9fa;color:#333}
+header{background:#d4af37;padding:1em}
+nav a{margin:0 1em;color:#000;font-weight:bold;text-decoration:none}
+.hero{padding:2em;text-align:center}
+.btn{display:inline-block;margin:0.5em;padding:0.8em 1.2em;border-radius:5px;background:#d4af37;color:#000;text-decoration:none;font-weight:bold}
+.btn.secondary{background:#444;color:#fff}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1em;padding:1em}
+.grid div{background:#fff;border:1px solid #ddd;border-radius:8px;padding:1em;text-align:center;cursor:pointer}
+.modal{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);display:flex;justify-content:center;align-items:center}
+.modal.hidden{display:none}
+.modal-content{background:#fff;padding:2em;border-radius:10px;max-width:500px;width:90%}
+.actions{margin-top:1em;display:flex;gap:1em;justify-content:center}
