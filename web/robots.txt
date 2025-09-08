@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://barretodo.com.ar/sitemap.xml
