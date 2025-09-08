@@ -110,3 +110,49 @@ a{color:var(--text);text-decoration:none}
   .grid{grid-template-columns:1fr}
   .hero-img{height:42vh}
 }
+
+
+
+/* ===== Centrado global amigable (sin romper el menú) ===== */
+
+/* Títulos, párrafos y botones en secciones principales */
+.page .container,
+.page .cta-band,
+.page .reviews,
+.page .rubros,
+.page .brands {
+  text-align: center;
+}
+
+/* Hero: centra los contenidos y el subtítulo */
+.hero-content {
+  align-items: center;        /* antes: flex-start */
+  text-align: center;
+}
+.subtitle { text-align: center; }
+
+/* Botoneras centradas */
+.cta-row {
+  justify-content: center;    /* centra los botones horizontalmente */
+}
+
+/* Tarjetas y reseñas centradas */
+.card, .review-card, .simple-cards .card {
+  text-align: center;
+}
+
+/* Grillas con contenidos centrados visualmente */
+.grid { justify-items: center; }
+.brand-grid { justify-items: center; }
+
+/* Mantener formularios cómodos de usar (texto centrado, pero inputs no estrechos) */
+.contact-grid { text-align: center; }
+.contact-form { max-width: 640px; margin: 0 auto; text-align: left; }
+.contact-form button { display: block; margin: 12px auto 0; }
+
+/* Footer: si querés todo centrado, descomentá estas dos líneas */
+/*
+.site-footer .footer-grid { text-align: center; }
+.site-footer .footer-grid > * { margin-left: auto; margin-right: auto; }
+*/
+
