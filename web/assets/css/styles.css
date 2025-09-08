@@ -54,11 +54,6 @@ a{color:var(--text);text-decoration:none}
 .brand-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:16px;align-items:center}
 .brand-logo{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:999px;border:1px solid var(--border);box-shadow:var(--shadow);background:#fff}
 
-.review-card{border:1px solid var(--border);border-radius:16px;box-shadow:var(--shadow);padding:16px;background:#fff}
-.review-card .avatar{width:60px;height:60px;border-radius:50%;background:#eee;margin-bottom:10px}
-.stars{color:#f4c150;font-size:18px}
-.review-text{color:var(--muted)}
-
 .cta-band{background:#fff;border-top:1px solid var(--border);border-bottom:1px solid var(--border);margin-top:32px}
 .cta-band-inner{display:flex;align-items:center;justify-content:space-between;padding:20px 0;gap:12px}
 .cta-band h2{margin:0}
