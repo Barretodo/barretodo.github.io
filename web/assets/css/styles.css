@@ -156,3 +156,67 @@ a{color:var(--text);text-decoration:none}
 .site-footer .footer-grid > * { margin-left: auto; margin-right: auto; }
 */
 
+
+/* ===== Layout de opiniones: avatar + nombre + estrellas ===== */
+
+/* Quitamos centrado dentro de la tarjeta y usamos grid */
+.review-card{
+  text-align: left;                 /* sobreescribe el centrado previo */
+  display: grid;
+  grid-template-columns: 56px 1fr;  /* avatar | info */
+  grid-auto-rows: auto;
+  column-gap: 12px;
+  row-gap: 6px;
+  align-items: center;
+  padding: 16px;
+}
+
+/* Avatar a la izquierda ocupando 2 filas (nombre + estrellas) */
+.review-card .avatar{
+  grid-column: 1;
+  grid-row: 1 / span 2;
+  width: 56px; height: 56px; border-radius: 50%;
+  background: #eee;
+}
+
+/* Nombre a la derecha (misma fila que el avatar) */
+.review-card h3{
+  grid-column: 2;
+  grid-row: 1;
+  margin: 0;
+}
+
+/* Estrellas debajo del nombre */
+.review-card .stars{
+  grid-column: 2;
+  grid-row: 2;
+  margin: 0;
+  color: #f4c150;                  /* dorado */
+  letter-spacing: 1px;
+  font-size: 16px;
+}
+
+/* Rol debajo de las estrellas (opcional) */
+.review-card > p:not(.review-text){
+  grid-column: 2;
+  grid-row: 3;
+  margin: 0 0 4px 0;
+  color: var(--muted);
+}
+
+/* Texto de la reseña ocupa todo el ancho abajo */
+.review-card .review-text{
+  grid-column: 1 / span 2;
+  grid-row: 4;
+  margin-top: 6px;
+}
+
+/* Responsive: en móviles mantenemos el mismo esquema pero con avatar más chico */
+@media (max-width:600px){
+  .review-card{
+    grid-template-columns: 44px 1fr;
+    column-gap: 10px;
+  }
+  .review-card .avatar{ width:44px; height:44px; }
+}
+
