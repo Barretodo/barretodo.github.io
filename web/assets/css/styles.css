@@ -13,7 +13,7 @@ html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:
 img{max-width:100%;display:block}
 a{color:var(--text);text-decoration:none}
 .container{width:92%;max-width:1200px;margin:0 auto}
-.site-header{position:sticky;top:0;background:#fff;border-bottom:1px solid var(--border);z-index:50}
+.site-header{position:sticky;top: var(--ticker-h, 0px);background:#fff;border-bottom:1px solid var(--border);z-index:50}
 .site-header .container{display:flex;align-items:center;justify-content:space-between;padding:10px 0}
 .brand{display:flex;align-items:center;gap:10px}
 .logo{width:56px;height:56px}
@@ -37,45 +37,48 @@ a{color:var(--text);text-decoration:none}
 .mt-32{margin-top:32px}
 
 /* ===== Promo Ticker fijo arriba ===== */
-.promo-ticker{
-  position: fixed;        /* fijo en la parte superior */
-  top: 0; left: 0; right: 0;
-  height: 32px;
-  background: linear-gradient(90deg, #f3e3c2, #e1cda1); /* degradado dorado claro */
-  border-bottom: 1px solid #d0b989;
-  overflow: hidden;
-  opacity: 0;             /* fade-in */
-  transition: opacity .6s ease;
-  z-index: 1000;          /* por encima del header */
+:root{
+  --ticker-h: 32px;
+  --ticker-bg: linear-gradient(90deg, #f3e3c2, #e1cda1);
+  --ticker-border: #d0b989;
 }
-.promo-ticker.show{ opacity: 1; }
+
+.promo-ticker{
+  position: fixed;
+  inset: 0 0 auto 0;                 /* top:0; left:0; right:0 */
+  height: var(--ticker-h);
+  background: var(--ticker-bg);
+  border-bottom: 1px solid var(--ticker-border);
+  z-index: 1000;
+  overflow: hidden;
+}
 
 .marquee{
-  display: flex;
-  align-items: center;
-  gap: 4rem;              /* separación entre mensajes */
+  height: 100%;
+  display: grid;
+  place-items: center;
   white-space: nowrap;
-  will-change: transform;
-  padding: 6px 0;
-  color: #222;
   font-size: 14px;
   font-weight: 500;
-  animation: marquee-move var(--marquee-duration, 28s) linear infinite;
+  color: #222;
 }
-.marquee-item{ flex: 0 0 auto; }
 
-.promo-ticker:hover .marquee{ animation-play-state: paused; }
-
-@media (prefers-reduced-motion: reduce){
-  .marquee{ animation: none; transform: none; }
+.marquee-track{
+  display: inline-block;
+  padding-inline: 0.5rem;
+  will-change: transform;
+  animation: marquee-move 26s linear infinite;
 }
+
+.promo-ticker:hover .marquee-track{ animation-play-state: paused; }
+
 @keyframes marquee-move{
   from { transform: translateX(0); }
   to   { transform: translateX(-50%); }
 }
 
-/* Empujar el header para que no quede tapado por el ticker */
-.site-header{ margin-top: 32px; }
+/* Header pegado pero SIN que el ticker lo tape */
+.site-header{ top: var(--ticker-h); }   /* header ya es sticky en tu CSS */
 
 
 
@@ -607,23 +610,21 @@ section.rubros, section.products { margin-bottom: 40px; }
 
 
 
-/* === Footer: logo + texto en línea === */
-.footer-brand{
-  display: flex !important;    /* fuerza que vayan lado a lado */
-  align-items: center;         /* centra verticalmente */
-  gap: 16px;                   /* espacio entre logo y texto */
-  max-width: 560px;            /* opcional: controla el ancho del bloque */
+/* === Footer: logo + texto en línea (versión final) === */
+.site-footer .footer-brand{
+  display:flex !important;
+  align-items:center;
+  gap:16px;
+  max-width:580px;
+  flex-wrap:nowrap;
 }
-
-.footer-brand img{
-  width: 72px;                 /* ajusta tamaño del logo */
-  height: auto;
-  flex: 0 0 auto;              /* que no se estire */
+.site-footer .footer-brand img{
+  width:88px;      /* ajustá a 72/88/96 a gusto */
+  height:auto;
+  flex:0 0 auto;
 }
-
-.footer-brand p{
-  margin: 0;                   /* saca márgenes por defecto del <p> */
-  line-height: 1.5;
-  flex: 1 1 auto;              /* permite que el texto use el espacio restante */
+.site-footer .footer-brand p{
+  margin:0;
+  line-height:1.55;
+  flex:1 1 auto;
 }
-
