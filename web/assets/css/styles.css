@@ -533,3 +533,81 @@ section.rubros, section.products { margin-bottom: 40px; }
   .products .card,
   .rubros .card { min-height: 0; }
 }
+
+
+
+/* ===== Footer (Barretodo) ===== */
+:root{
+  --brand-gold:#D2A445;         /* tu dorado */
+  --ink:#1E1F23;                /* texto principal */
+  --muted:#6B6F76;              /* texto secundario */
+  --footer-bg:#F7F4EE;          /* base clara y cálida */
+  --footer-line:#E8E3D9;        /* línea sutil */
+}
+
+.site-footer{
+  background: var(--footer-bg);
+  color: var(--ink);
+  padding-top: 36px;
+  margin-top: 48px;
+  border-top: 1px solid var(--footer-line);
+}
+
+.footer-grid{
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr 1fr;
+  gap: 32px 40px;
+  align-items: start;
+}
+
+.footer-col{font-size: 15px; line-height: 1.6;}
+.footer-title{
+  font-weight: 700;
+  font-size: 16px;
+  margin: 6px 0 12px;
+  color: var(--ink);
+}
+
+.footer-list{list-style: none; margin: 0; padding: 0;}
+.footer-list li{display: grid; grid-template-columns: 20px 1fr; gap: 10px; margin: 8px 0;}
+.footer-list a{color: var(--ink); text-decoration: none; border-bottom: 1px solid transparent;}
+.footer-list a:hover{border-color: var(--brand-gold); color: var(--ink);}
+
+.footer-brand{display: grid; grid-template-columns: 40px 1fr; gap: 12px;}
+.footer-logo{display: block;}
+.footer-text{margin: 0; color: var(--muted);}
+
+.footer-social{display: flex; gap: 12px; align-items: center;}
+.footer-social a{
+  width: 36px; height: 36px; display: grid; place-items: center;
+  border: 1px solid var(--footer-line); border-radius: 999px;
+  background: #fff;
+  transition: transform .15s ease, border-color .15s ease, box-shadow .15s ease;
+}
+.footer-social a:hover{
+  transform: translateY(-2px);
+  border-color: var(--brand-gold);
+  box-shadow: 0 4px 14px rgba(0,0,0,.07);
+}
+.footer-social svg{width: 18px; height: 18px; fill: var(--ink);}
+
+.ico{width: 20px; height: 20px; display: grid; place-items: center; margin-top: 2px;}
+.ico svg{width: 16px; height: 16px; fill: var(--brand-gold); opacity: .95;}
+
+.footer-bottom{
+  margin-top: 28px;
+  border-top: 1px solid var(--footer-line);
+  padding: 14px 0 18px;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+/* Responsive */
+@media (max-width: 900px){
+  .footer-grid{grid-template-columns: 1fr 1fr;}
+}
+@media (max-width: 560px){
+  .footer-grid{grid-template-columns: 1fr; gap: 20px;}
+  .footer-bottom{text-align: center;}
+}
+
