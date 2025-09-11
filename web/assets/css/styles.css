@@ -628,3 +628,11 @@ section.rubros, section.products { margin-bottom: 40px; }
   line-height:1.55;
   flex:1 1 auto;
 }
+
+
+
+
+/* --- HOTFIX ANTI-CUELGUE --- */
+.promo-ticker { display: none !important; }           /* apaga el ticker por completo */
+.site-header { top: 0 !important; }                   /* header sticky vuelve arriba */
+.marquee { animation: none !important; transform: none !important; }
