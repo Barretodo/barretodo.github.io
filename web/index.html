@@ -309,14 +309,18 @@
   <div class="container">
 
     <div class="footer-main">
-      <!-- Col 1: Logo -->
+      <!-- Col 1: Marca + descripción -->
       <div class="f-col f-brand">
         <img src="assets/img/logo.png" alt="Barretodo" class="f-logo">
+        <p class="f-desc">
+          Distribuidora mayorista y minorista de productos de limpieza en CABA.
+          Te ayudamos a elegir lo más rendidor.
+        </p>
       </div>
 
       <span class="f-divider" aria-hidden="true"></span>
 
-      <!-- Col 2: Contacto -->
+      <!-- Col 2: Datos de contacto -->
       <div class="f-col f-contact">
         <h3 class="f-title">Contacto</h3>
         <ul class="f-list">
@@ -328,21 +332,25 @@
 
       <span class="f-divider" aria-hidden="true"></span>
 
-      <!-- Col 3: Redes -->
-      <div class="f-col f-social">
+      <!-- Col 3: Redes + Newsletter en un solo bloque -->
+      <div class="f-col f-social-news">
         <h3 class="f-title">Seguinos</h3>
         <div class="f-social-row">
-          <a href="https://instagram.com/" target="_blank" class="f-btn">📷</a>
-          <a href="https://wa.me/541151022954" target="_blank" class="f-btn">💬</a>
-          <a href="https://facebook.com/" target="_blank" class="f-btn">👍</a>
+          <!-- Instagram -->
+          <a class="f-icon" href="https://instagram.com/" target="_blank" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#1F2D2C" stroke-width="1.8"><rect x="2.5" y="2.5" width="19" height="19" rx="5" ry="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="18" cy="6" r="1.3" fill="#1F2D2C" stroke="none"/></svg>
+          </a>
+          <!-- WhatsApp -->
+          <a class="f-icon" href="https://wa.me/541151022954" target="_blank" aria-label="WhatsApp">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#1F2D2C" stroke-width="1.8"><path d="M20.5 11.8A8.5 8.5 0 0 1 8.3 19.6L4 21l1.3-4.1A8.5 8.5 0 1 1 20.5 11.8z"/><path d="M16.4 14.6c-.2.6-1.2 1-1.7.9-1.4-.3-3.2-1.2-4.3-2.6-1.2-1.4-1.7-2.9-1.9-3.8-.1-.6.3-1.5.9-1.7.3-.1.6 0 .8.3l.9 1.2c.2.3.2.7 0 1-.2.2-.2.4 0 .7.3.6.9 1.4 1.6 2 .6.6 1.3 1.1 1.9 1.4.3.1.5.1.7 0 .3-.2.7-.2 1 .1l1 .8c.3.3.4.6.1.9z" fill="#1F2D2C" stroke="none"/></svg>
+          </a>
+          <!-- Facebook -->
+          <a class="f-icon" href="https://facebook.com/" target="_blank" aria-label="Facebook">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#1F2D2C" stroke-width="1.8"><path d="M14.5 8.5h2.5V6h-2.5c-2 0-3.5 1.5-3.5 3.5V12H8v2.5h3v6h2.5v-6H17V12h-3v-2c0-.6.4-1.5 1.5-1.5z"/></svg>
+          </a>
         </div>
-      </div>
 
-      <span class="f-divider" aria-hidden="true"></span>
-
-      <!-- Col 4: Newsletter -->
-      <div class="f-col f-news">
-        <h3 class="f-title">Suscribite</h3>
+        <h3 class="f-title f-title-space">Suscribite</h3>
         <form class="f-news-form" action="#" method="post">
           <input type="email" class="f-input" placeholder="Tu email">
           <button class="f-submit" type="submit">Suscribirme</button>
@@ -359,9 +367,9 @@
       </nav>
       <div class="f-copy">© 2025 Barretodo. Todos los derechos reservados.</div>
     </div>
-
   </div>
 </footer>
+
 
 
 <a class="whatsapp-fab" href="https://wa.me/541151022954?text=Hola%20Barretodo%2C%20quiero%20un%20presupuesto" target="_blank" rel="noopener" aria-label="Comunicate con nosotros">
