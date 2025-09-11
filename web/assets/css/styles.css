@@ -607,21 +607,23 @@ section.rubros, section.products { margin-bottom: 40px; }
 
 
 
-/* === Ajuste logo + texto en el footer === */
-.footer-logo {
-  display: flex;              /* pone logo y texto en la misma fila */
-  align-items: center;        /* centra verticalmente logo y texto */
-  gap: 15px;                  /* espacio entre logo y texto */
-  max-width: 450px;           /* opcional: controla ancho */
+/* === Footer: logo + texto en línea === */
+.footer-brand{
+  display: flex !important;    /* fuerza que vayan lado a lado */
+  align-items: center;         /* centra verticalmente */
+  gap: 16px;                   /* espacio entre logo y texto */
+  max-width: 560px;            /* opcional: controla el ancho del bloque */
 }
 
-.footer-logo img {
-  max-width: 70px;            /* ajusta tamaño del logo */
+.footer-brand img{
+  width: 72px;                 /* ajusta tamaño del logo */
   height: auto;
+  flex: 0 0 auto;              /* que no se estire */
 }
 
-.footer-logo p {
-  margin: 0;                  /* evita márgenes raros */
-  font-size: 14px;
+.footer-brand p{
+  margin: 0;                   /* saca márgenes por defecto del <p> */
   line-height: 1.5;
+  flex: 1 1 auto;              /* permite que el texto use el espacio restante */
 }
+
