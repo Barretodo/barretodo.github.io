@@ -96,3 +96,11 @@ document.querySelectorAll('.card-img').forEach(img=>{
   ticker.addEventListener('mouseenter', () => track.style.animationPlayState = 'paused');
   ticker.addEventListener('mouseleave', () => track.style.animationPlayState = 'running');
 })();
+
+
+
+// Debug rápido: mostrar el ticker aunque no haya clonado todavía
+document.addEventListener('DOMContentLoaded', () => {
+  const t = document.querySelector('.promo-ticker');
+  if (t) t.classList.add('show');
+});
