@@ -42,8 +42,6 @@ document.querySelectorAll('.card-img').forEach(img=>{
 
 
 
-});
-
 // --- PROMO TICKER (versión segura y compatible con tu HTML) ---
 (() => {
   const ticker = document.querySelector('.promo-ticker');
