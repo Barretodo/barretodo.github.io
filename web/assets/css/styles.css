@@ -694,3 +694,24 @@ section.rubros, section.products { margin-bottom: 40px; }
 
 /* Extra aire para no tapar el copy con el botón flotante de WhatsApp */
 .site-footer .footer-bottom{ padding-bottom: 56px; }
+
+
+
+/* === Footer: centrado vertical + menos espacio inferior === */
+.footer-main{
+  align-items: center;              /* centra los 3/4 bloques del grid en altura */
+}
+
+.site-footer{
+  padding-bottom: 34px;             /* antes 56–72px; reduce el aire global del footer */
+}
+
+.site-footer .footer-bottom{
+  padding-bottom: 16px;             /* achica el espacio bajo la barra de copy/links */
+}
+
+/* Si en móviles el botón flotante de WhatsApp tapara el copy,
+   podes dar un poco más de aire sólo ahí: */
+@media (max-width: 600px){
+  .site-footer .footer-bottom{ padding-bottom: 36px; }
+}
