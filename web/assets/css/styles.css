@@ -637,17 +637,12 @@ html{ scroll-padding-top: calc(var(--ticker-h) + var(--header-h)); }
 }
 
 .features-list img {
-  width: 48px;
-  height: 48px;
   margin-bottom: 12px;
-}
-
-
-.benefit img {
   display: block;
   margin: 0 auto 10px auto; /* centrado horizontal y espacio debajo */
   width: 64px;   /* tamaño uniforme */
   height: 64px;  /* asegura proporción cuadrada */
   object-fit: contain; /* evita deformación */
 }
+
 
