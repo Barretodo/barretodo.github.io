@@ -669,5 +669,20 @@ html{ scroll-padding-top: calc(var(--ticker-h) + var(--header-h)); }
   text-align: center;
 }
 
+/* === Cards de la página Distribuidora: ancho y alto parejos === */
+.pg-distribuidora .grid {
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* columnas parejas */
+  gap: 24px;  /* espacio uniforme */
+}
+
+.pg-distribuidora .grid .card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;        /* estira todas las cards a la misma altura */
+  text-align: center;
+  padding: 20px;       /* ya no depende de estilos inline */
+}
+
 
 
