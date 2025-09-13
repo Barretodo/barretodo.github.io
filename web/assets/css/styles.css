@@ -649,7 +649,7 @@ section.rubros, section.products { margin-bottom: 40px; }
 /* === 1) Parametrizamos alturas === */
 :root{
   --ticker-h: 32px;   /* ya lo tenías */
-  --header-h: 42px;   /* alto efectivo del header (aprox) */
+  --header-h: 22px;   /* alto efectivo del header (aprox) */
 }
 
 /* === 2) Header un poquito más angosto (queda ~64px) === */
