@@ -658,20 +658,16 @@ html{ scroll-padding-top: calc(var(--ticker-h) + var(--header-h)); }
   font-size:26px;
 }
 
-/* ——— Distribuidora (scope local) ——— */
-.pg-distribuidora .grid {           /* no toca otros grids del sitio */
-  align-items: stretch;
-}
+/* === Uniformidad en tarjetas de la página Distribuidora === */
+.pg-distribuidora .grid { align-items: stretch; }
 
-.pg-distribuidora .grid > .card {   /* fuerzas cada card a ocupar su celda completa */
+.pg-distribuidora .grid > .card {
   display: flex;
   flex-direction: column;
+  justify-content: space-between; /* distribuye título y texto */
   height: 100%;
+  text-align: center;
 }
 
-/* opcional: mantén consistencia visual entre títulos/textos */
-.pg-distribuidora .grid > .card h3 { margin-top: 6px; }
-.pg-distribuidora .grid > .card p  { margin-top: 6px; }
-.pg-distribuidora .grid > .card :is(ol, ul, p):last-child { margin-top: auto; }
 
 
