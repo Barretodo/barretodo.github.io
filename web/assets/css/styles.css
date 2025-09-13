@@ -643,4 +643,11 @@ html{ scroll-padding-top: calc(var(--ticker-h) + var(--header-h)); }
 }
 
 
+.benefit img {
+  display: block;
+  margin: 0 auto 10px auto; /* centrado horizontal y espacio debajo */
+  width: 64px;   /* tamaño uniforme */
+  height: 64px;  /* asegura proporción cuadrada */
+  object-fit: contain; /* evita deformación */
+}
 
