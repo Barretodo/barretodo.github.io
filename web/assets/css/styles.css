@@ -646,3 +646,14 @@ html{ scroll-padding-top: calc(var(--ticker-h) + var(--header-h)); }
 }
 
 
+/* Icono redondo sutil que ya venías usando como idea */
+.badge-ico{
+  width:56px;height:56px;
+  display:grid;place-items:center;
+  margin:0 auto 10px;
+  border-radius:50%;
+  border:1px solid rgba(0,0,0,.08);
+  background:#fff;
+  box-shadow:var(--shadow);
+  font-size:26px;
+}
