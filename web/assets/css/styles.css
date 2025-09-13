@@ -657,3 +657,19 @@ html{ scroll-padding-top: calc(var(--ticker-h) + var(--header-h)); }
   box-shadow:var(--shadow);
   font-size:26px;
 }
+
+/* ——— Distribuidora (scope local) ——— */
+.pg-distribuidora .grid {           /* no toca otros grids del sitio */
+  align-items: stretch;
+}
+
+.pg-distribuidora .grid > .card {   /* fuerzas cada card a ocupar su celda completa */
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* opcional: mantén consistencia visual entre títulos/textos */
+.pg-distribuidora .grid > .card h3 { margin-top: 6px; }
+.pg-distribuidora .grid > .card p  { margin-top: 6px; }
+
