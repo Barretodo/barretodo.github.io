@@ -643,3 +643,44 @@ section.rubros, section.products { margin-bottom: 40px; }
 
 /* Extra aire para no tapar el copy con el botón flotante de WhatsApp */
 .site-footer .footer-bottom{ padding-bottom: 56px; }
+
+
+
+/* ===== Alturas declarativas ===== */
+:root{
+  /* alto del ticker (ya lo venís usando) */
+  --ticker-h: 32px;
+  /* alto efectivo del header (logo + nav) en desktop/móvil */
+  --header-h: 64px;
+}
+@media (max-width: 900px){
+  :root{ --header-h: 56px; }
+}
+
+/* 1) Empuje universal: compensa Ticker + Header en TODAS las páginas */
+main, .page, .content, .site-main {
+  /* usá el selector que envuelve tu contenido (dejé varios por compatibilidad) */
+  padding-top: calc(var(--ticker-h) + var(--header-h));
+  scroll-padding-top: calc(var(--ticker-h) + var(--header-h)); /* útil para anclas */
+}
+
+/* 2) El header se queda pegado debajo del ticker (sin consumir más espacio) */
+.site-header{
+  position: sticky;
+  top: var(--ticker-h) !important;
+  margin-top: 0 !important;
+  z-index: 50;
+}
+
+/* 3) Hacemos el header un poco más angosto (sin romper el layout) */
+.site-header .container { padding: 6px 0; }             /* antes 10px */
+.logo { width: 48px; height: 48px; }                    /* antes 56px */
+.site-nav ul { gap: 14px; }                              /* antes 18px */
+.site-nav a { padding: 6px 8px; }                        /* antes 8px 10px */
+@media (max-width: 900px){
+  .site-nav ul { top: calc(var(--ticker-h) + 56px); }    /* despliegue móvil bajo el ticker */
+}
+
+/* (Opcional) Si alguna página tiene un H1 pegado al borde superior, dale aire */
+h1.page-title, .page h1 { margin-top: 4px; }
+
