@@ -672,4 +672,6 @@ html{ scroll-padding-top: calc(var(--ticker-h) + var(--header-h)); }
 /* opcional: mantén consistencia visual entre títulos/textos */
 .pg-distribuidora .grid > .card h3 { margin-top: 6px; }
 .pg-distribuidora .grid > .card p  { margin-top: 6px; }
+.pg-distribuidora .grid > .card :is(ol, ul, p):last-child { margin-top: auto; }
+
 
