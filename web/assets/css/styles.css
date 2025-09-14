@@ -658,31 +658,32 @@ html{ scroll-padding-top: calc(var(--ticker-h) + var(--header-h)); }
   font-size:26px;
 }
 
-/* === Uniformidad en tarjetas de la página Distribuidora === */
-.pg-distribuidora .grid { align-items: stretch; }
 
-.pg-distribuidora .grid > .card {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between; /* distribuye título y texto */
-  height: 100%;
-  text-align: center;
+
+/* ===== Distribuidora: grid y cards parejos ===== */
+.pg-distribuidora .grid{
+  /* 3 cols en desktop, 2 en tablet, 1 en móvil */
+  display:grid;
+  grid-template-columns: repeat(3, minmax(0,1fr));
+  gap:24px;
+  justify-items:stretch;
+}
+@media (max-width:980px){ .pg-distribuidora .grid{ grid-template-columns:repeat(2,minmax(0,1fr)); } }
+@media (max-width:600px){ .pg-distribuidora .grid{ grid-template-columns:1fr; } }
+
+.pg-distribuidora .card{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  text-align:center;
+  padding:20px;
+  /* mismo alto visual para todas: */
+  min-height: 260px;      /* podés subirlo si querés más aire */
+  height:100%;
 }
 
-/* === Cards de la página Distribuidora: ancho y alto parejos === */
-.pg-distribuidora .grid {
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* columnas parejas */
-  gap: 24px;  /* espacio uniforme */
-}
+.pg-distribuidora .badge-ico{ margin-bottom:10px; }
 
-.pg-distribuidora .grid .card {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 100%;        /* estira todas las cards a la misma altura */
-  text-align: center;
-  padding: 20px;       /* ya no depende de estilos inline */
-}
-
-
-
+/* ajusto márgenes para que el spacing sea uniforme */
+.pg-distribuidora .card > h3{ margin:8px 0 6px; }
+.pg-distribuidora .card > p { margin:0; }
