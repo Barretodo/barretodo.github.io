@@ -720,3 +720,18 @@ html{ scroll-padding-top: calc(var(--ticker-h) + var(--header-h)); }
   box-sizing: border-box;
 }
 
+/* ===== FIX FAQ: que todas las cards ocupen el mismo ancho ===== */
+.page-faq .grid {
+  justify-items: stretch;    /* ocupa toda la celda */
+}
+
+.page-faq .card {
+  width: 100%;               /* llena el track */
+  min-height: 180px;          /* alto mínimo consistente */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;    /* centra vertical */
+  text-align: center;
+  box-sizing: border-box;
+}
+
