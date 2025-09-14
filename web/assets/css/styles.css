@@ -735,3 +735,61 @@ html{ scroll-padding-top: calc(var(--ticker-h) + var(--header-h)); }
   box-sizing: border-box;
 }
 
+/* ===== Quiénes somos ===== */
+/* --- Sección valores --- */
+.values-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+.values-grid .card {
+  text-align: center;
+  padding: 20px;
+}
+
+/* --- Sección proceso --- */
+.process-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+}
+.process-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+}
+.process-card h3 {
+  margin-top: 12px;
+  font-size: 18px;
+  font-weight: 600;
+  text-align: center;
+}
+.process-card p {
+  text-align: center;
+  color: #555;
+  font-size: 15px;
+}
+
+/* --- Stats (opcional) --- */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 16px;
+  margin-top: 24px;
+}
+.stat {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 16px;
+  text-align: center;
+}
+.stat-num {
+  font-size: 22px;
+  font-weight: bold;
+}
+.stat-label {
+  color: #666;
+  font-size: 14px;
+}
+
