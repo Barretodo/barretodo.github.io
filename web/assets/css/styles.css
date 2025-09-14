@@ -690,34 +690,32 @@ html{ scroll-padding-top: calc(var(--ticker-h) + var(--header-h)); }
 
 
 
-/* ===== FAQ: columnas fijas por breakpoint (ancho consistente) ===== */
-.page-faq .grid{
-  display: grid;
+/* ===== FAQ: misma grilla y cards a ancho completo ===== */
+.faq .grid.simple-cards{
+  /* columnas fijas por breakpoint: anchos consistentes */
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 24px;
-  align-items: stretch;                 /* iguala alturas entre filas */
+  justify-items: stretch;   /* <- clave: que no se achiquen */
+  align-items: stretch;     /* alturas iguales por fila */
 }
 
-/* Desktop: 3 columnas */
-@media (min-width: 1024px){
-  .page-faq .grid{ grid-template-columns: repeat(3, 1fr); }
+/* tablet */
+@media (max-width: 1023.98px){
+  .faq .grid.simple-cards{ grid-template-columns: repeat(2, minmax(0,1fr)); }
 }
-/* Tablet: 2 columnas */
-@media (min-width: 640px) and (max-width: 1023.98px){
-  .page-faq .grid{ grid-template-columns: repeat(2, 1fr); }
-}
-/* Mobile: 1 columna */
+/* móvil */
 @media (max-width: 639.98px){
-  .page-faq .grid{ grid-template-columns: 1fr; }
+  .faq .grid.simple-cards{ grid-template-columns: 1fr; }
 }
 
-/* Cards: ocupar toda la celda y centrar contenido */
-.page-faq .card{
+/* cada card ocupa todo el track y centra su contenido */
+.faq .grid.simple-cards .card{
+  width: 100%;               /* <- ocupa todo el ancho de la celda */
   display: flex;
   flex-direction: column;
-  justify-content: center;              /* centro vertical */
+  justify-content: center;   /* centrado vertical del texto */
   text-align: center;
-  width: 100%;                          /* llena el track */
-  min-height: 180px;                    /* misma altura mínima */
+  min-height: 190px;         /* altura mínima pareja */
   padding: 20px;
   box-sizing: border-box;
 }
