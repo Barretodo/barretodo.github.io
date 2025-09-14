@@ -716,3 +716,22 @@ html{ scroll-padding-top: calc(var(--ticker-h) + var(--header-h)); }
   color: #555;
 }
 
+
+/* ===== FAQ: tarjetas con mismo ancho/alto y contenido centrado ===== */
+.faq .grid{
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  align-items: stretch;
+  justify-items: stretch;
+}
+
+.faq .grid .card{
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* o space-between si querés separar título/texto */
+  text-align: center;
+  padding: 20px;           /* consistente con tus cards */
+}
+
+
