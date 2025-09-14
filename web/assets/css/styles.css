@@ -690,16 +690,20 @@ html{ scroll-padding-top: calc(var(--ticker-h) + var(--header-h)); }
 
 
 
-/* FAQ: igualar altura y centrar contenido de las cards */
-.grid.simple-cards {            /* el contenedor tiene ambas clases */
-  align-items: stretch;         /* que todas las celdas estiren */
+/* === FAQ: forzar filas de igual altura y que la card llene el track === */
+.grid.simple-cards{
+  display: grid; /* por si algún estilo anterior cambió esto */
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 24px;
+  grid-auto-rows: 1fr;          /* <— TODAS las filas con la misma altura */
+  align-items: stretch;         /* estira los ítems al alto del track */
 }
 
-.grid.simple-cards .card {
-  display: flex;                /* para poder centrar verticalmente */
+.grid.simple-cards > .card{
+  display: flex;
   flex-direction: column;
-  justify-content: center;      /* texto centrado en altura */
-  text-align: center;           /* alineación coherente */
-  height: 100%;                 /* que ocupe toda la celda */
-  min-height: 190px;            /* altura base consistente (ajustable) */
+  justify-content: center;      /* centra el contenido verticalmente */
+  text-align: center;
+  height: 100%;                  /* <— la card ocupa todo el alto del track */
+  min-height: 190px;             /* altura mínima consistente (ajustable) */
 }
