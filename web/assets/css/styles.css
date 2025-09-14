@@ -687,3 +687,32 @@ html{ scroll-padding-top: calc(var(--ticker-h) + var(--header-h)); }
 /* ajusto márgenes para que el spacing sea uniforme */
 .pg-distribuidora .card > h3{ margin:8px 0 6px; }
 .pg-distribuidora .card > p { margin:0; }
+
+
+
+/* ===== FAQ: igualar columnas y centrar contenido sin romper nada ===== */
+.page-faq .grid{
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+  align-items: stretch;           /* todas las cards estiran igual */
+}
+
+.page-faq .card{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;        /* centra verticalmente los textos */
+  text-align: center;
+  min-height: 160px;              /* altura mínima pareja */
+  padding: 20px;                  /* un poco más de aire */
+}
+
+.page-faq .card h3{
+  margin: 0 0 8px;
+  font-weight: 700;
+}
+
+.page-faq .card p{
+  margin: 0;
+  color: #555;
+}
+
