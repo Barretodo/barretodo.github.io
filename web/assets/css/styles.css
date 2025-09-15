@@ -899,11 +899,14 @@ html{ scroll-padding-top: calc(var(--ticker-h) + var(--header-h)); }
 
 /* BOTON WHATSAPP INDEX */
 .btn-whatsapp {
-  background: #25D366;
-  color: #fff;
+  background: #25D366 !important;   /* verde WhatsApp */
+  color: #fff !important;           /* texto blanco */
   border: 1px solid #1ebe5d;
 }
+
 .btn-whatsapp:hover {
-  background: #1ebe5d;
+  background: #1ebe5d !important;   /* verde más oscuro al pasar el mouse */
+  color: #fff !important;
 }
+
 
