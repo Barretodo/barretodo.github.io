@@ -67,56 +67,65 @@ a{color:var(--text);text-decoration:none}
 
 /* Modals */
 .modal{
-  position:fixed; inset:0; display:none; align-items:center; justify-content:center; z-index:80;
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 80;
 }
-.modal[aria-hidden="false"]{ display:flex; }
-.modal-backdrop{ position:absolute; inset:0; background:rgba(0,0,0,.4); }
+.modal[aria-hidden="false"]{ display: flex; }
+.modal-backdrop{
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,.4);
+}
 
 .modal-content{
-  position:relative;
-  background:#fff;
-  border-radius:16px;
+  position: relative;
+  background: #fff;
+  border-radius: 16px;
   padding: clamp(20px, 3.6vw, 28px);
-  max-width: 720px;          /* un toque más ancha */
+  max-width: 720px;     /* un toque más ancha */
   width: 92%;
   box-shadow: var(--shadow);
+  text-align: center;   /* centra títulos y descripciones */
 }
 
-/* botón cerrar (lo mantenemos) */
+/* botón cerrar */
 .modal-close{
-  position:absolute; top:8px; right:8px;
-  border:none; background:#fff; border:1px solid var(--border);
-  border-radius:8px; padding:4px 10px; cursor:pointer;
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  border: none;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 4px 10px;
+  cursor: pointer;
 }
 
-/* LISTA: sin bullets, grilla, y cada item centrado como “pill” */
+/* LISTA: grilla limpia, sin bullets */
 .modal-list{
-  list-style: none;          /* quita los puntos nativos */
+  margin: 16px 0 20px;
   padding: 0;
-  margin: 12px 0 18px;
   display: grid;
-  grid-template-columns: repeat(2, minmax(0,1fr)); /* dos columnas en desktop */
-  gap: 10px 12px;
+  grid-template-columns: repeat(2,1fr);  /* dos columnas en desktop */
+  gap: 12px;
 }
 
 .modal-list li{
+  list-style: none;
   display: flex;
   align-items: center;
-  justify-content: center;   /* texto bien centrado */
-  gap: 8px;
+  justify-content: center;
   border: 1px solid var(--border);
   border-radius: 12px;
-  padding: 10px 12px;
+  padding: 12px;
   background: #fff;
+  font-size: 15px;
+  color: #333;
   text-align: center;
-}
-
-/* puntito decorativo dentro del “pill” (opcional, sutil) */
-.modal-list li::before{
-  content: "";
-  width: 8px; height: 8px;
-  border-radius: 50%;
-  background: var(--gold);
 }
 
 /* textos del modal */
@@ -130,6 +139,7 @@ a{color:var(--text);text-decoration:none}
 @media (max-width: 560px){
   .modal-list{ grid-template-columns: 1fr; }
 }
+
 
 
 .simple-cards .card{padding:16px}
