@@ -896,3 +896,14 @@ html{ scroll-padding-top: calc(var(--ticker-h) + var(--header-h)); }
 .btn-secondary:hover {
   background: #fdfaf5; /* toque beige en hover */
 }
+
+/* BOTON WHATSAPP INDEX */
+.btn-whatsapp {
+  background: #25D366;
+  color: #fff;
+  border: 1px solid #1ebe5d;
+}
+.btn-whatsapp:hover {
+  background: #1ebe5d;
+}
+
