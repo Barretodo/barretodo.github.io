@@ -875,3 +875,24 @@ html{ scroll-padding-top: calc(var(--ticker-h) + var(--header-h)); }
   background: linear-gradient(90deg, rgba(247,243,236,0.85), rgba(247,243,236,0.1));
 }
 
+/* TITULO WEB */
+.hero h1 {
+  color: #fff;     /* en vez de #111 */
+  text-shadow: 0 2px 4px rgba(0,0,0,.35); /* sombra sutil para más contraste */
+}
+
+.hero .subtitle {
+  background: rgba(247, 243, 236, 0.9); /* beige */
+  color: #1F2D2C;
+  font-size: 18px;
+  line-height: 1.4;
+}
+
+.btn-secondary {
+  background: #fff;
+  color: #1F2D2C;
+  border: 1px solid var(--gold);
+}
+.btn-secondary:hover {
+  background: #fdfaf5; /* toque beige en hover */
+}
