@@ -869,4 +869,9 @@ html{ scroll-padding-top: calc(var(--ticker-h) + var(--header-h)); }
 .page-about .about-cta .cta-band-inner{ padding: 20px 0; }
 
 
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(247,243,236,0.85), rgba(247,243,236,0.1));
+}
 
