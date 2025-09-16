@@ -87,25 +87,7 @@
     emailjs.init("PA7qGrJKXL9PpzVzI");
   })();
 </script>
-<meta content="Barretodo: distribuidora mayorista de productos de limpieza en CABA. Envíos 24–48 h. Atención por WhatsApp." name="description"/><link href="https://barretodo.com.ar/" rel="canonical"/><meta content="Distribuidora mayorista de productos de limpieza en CABA | Barretodo" property="og:title"/><meta content="Barretodo: distribuidora mayorista de productos de limpieza en CABA. Envíos 24–48 h. Atención por WhatsApp." property="og:description"/><meta content="website" property="og:type"/><meta content="summary_large_image" name="twitter:card"/><meta content="https://barretodo.com.ar/logo-barretodo.jpeg" property="og:image"/><script type="application/ld+json">{"@context":"https://schema.org","@type":"LocalBusiness","name":"Barretodo","url":"https://barretodo.com.ar/","telephone":"+54 11 5102-2954","priceRange":"$$","address":{"@type":"PostalAddress","streetAddress":"Av. Hipólito Yrigoyen 3386","addressLocality":"Almagro","addressRegion":"CABA","postalCode":"C1208","addressCountry":"AR"},"areaServed":"Ciudad Autónoma de Buenos Aires","openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"10:00","closes":"20:00"},{"@type":"OpeningHoursSpecification","dayOfWeek":"Saturday","opens":"10:00","closes":"14:00"}],"sameAs":["https://www.instagram.com/barre.todo"],"image":"https://barretodo.com.ar/logo-barretodo.jpeg"}</script><style>
-/* Sticky cart bar */
-.sticky-cart{
-  position: fixed; left:0; right:0; bottom:0; z-index: 999;
-  background: #ffffff; border-top:1px solid #e8e4da;
-  display:flex; justify-content: space-between; align-items:center;
-  padding: 10px 14px; box-shadow: 0 -6px 18px rgba(0,0,0,.06); gap:12px;
-}
-.sticky-cart .sc-left{ font-size:15px; color:#1F2D2C; }
-.sticky-cart .sc-left strong{ font-weight:800; }
-.sticky-cart .sc-note{ color:#6b6b6b; margin-left:10px; font-size:13px; }
-.sticky-cart .sc-right{ display:flex; gap:8px; }
-.btn-whatsapp{ background:#25D366; color:#fff; border:1px solid #1ebe5d; }
-.btn-whatsapp:hover{ background:#1ebe5d; color:#fff; }
-@media (max-width: 640px){
-  .sticky-cart{ flex-direction:column; align-items:stretch; }
-  .sticky-cart .sc-right{ justify-content:space-between; }
-}
-</style></head>
+<meta content="Barretodo: distribuidora mayorista de productos de limpieza en CABA. Envíos 24–48 h. Atención por WhatsApp." name="description"/><link href="https://barretodo.com.ar/" rel="canonical"/><meta content="Distribuidora mayorista de productos de limpieza en CABA | Barretodo" property="og:title"/><meta content="Barretodo: distribuidora mayorista de productos de limpieza en CABA. Envíos 24–48 h. Atención por WhatsApp." property="og:description"/><meta content="website" property="og:type"/><meta content="summary_large_image" name="twitter:card"/><meta content="https://barretodo.com.ar/logo-barretodo.jpeg" property="og:image"/><script type="application/ld+json">{"@context":"https://schema.org","@type":"LocalBusiness","name":"Barretodo","url":"https://barretodo.com.ar/","telephone":"+54 11 5102-2954","priceRange":"$$","address":{"@type":"PostalAddress","streetAddress":"Av. Hipólito Yrigoyen 3386","addressLocality":"Almagro","addressRegion":"CABA","postalCode":"C1208","addressCountry":"AR"},"areaServed":"Ciudad Autónoma de Buenos Aires","openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"10:00","closes":"20:00"},{"@type":"OpeningHoursSpecification","dayOfWeek":"Saturday","opens":"10:00","closes":"14:00"}],"sameAs":["https://www.instagram.com/barre.todo"],"image":"https://barretodo.com.ar/logo-barretodo.jpeg"}</script></head>
 <body style="background-color:#f4f4f4;">
 <div style="text-align:center;margin-top:20px;"><img alt="Logo" loading="lazy" src="logo-barretodo.jpeg" width="180"/></div>
 <h1>Catálogo interactivo BARRETODO</h1>
@@ -298,83 +280,6 @@ async function cargarCatalogo() {
    actualizarTotales(); // Ejecutar una vez para iniciar los totales correctamente
 }
 window.addEventListener('DOMContentLoaded', cargarCatalogo);
-</script>
-<div class="sticky-cart" id="stickyCart">
-<div class="sc-left">
-<strong id="sc-count">0</strong> productos · <span id="sc-total">$0</span>
-<span class="sc-note">Envíos 24–48 h · 3 cuotas sin interés</span>
-</div>
-<div class="sc-right">
-<button class="btn btn-secondary" id="btnViewCart" type="button">VER CARRITO</button>
-<button class="btn btn-primary" id="btnCheckout" type="button">COTIZAR</button>
-<a class="btn btn-whatsapp" id="btnWA" rel="noopener" target="_blank">WHATSAPP</a>
-</div>
-</div>
-<script>
-(function(){
-  function fmt(n){ try { return n.toLocaleString('es-AR',{style:'currency',currency:'ARS', maximumFractionDigits:0}); } catch(e){ return '$'+n; } }
-  function leerCarrito(){
-    // Cuenta cantidades en inputs .cantidad
-    const rows = Array.from(document.querySelectorAll('tbody tr'));
-    let items=0, total=0;
-    rows.forEach(row=>{
-      const precioEl = row.querySelector('.precio');
-      const cantEl = row.querySelector('.cantidad');
-      if(!precioEl || !cantEl) return;
-      const precio = parseFloat(precioEl.textContent) || 0;
-      const cant = parseInt(cantEl.value||'0') || 0;
-      if(cant>0){ items += cant; total += cant*precio; }
-    });
-    return {items,total};
-  }
-
-  function render(){
-    const {items,total} = leerCarrito();
-    const c = document.getElementById('sc-count');
-    const t = document.getElementById('sc-total');
-    if(c) c.textContent = items;
-    if(t) t.textContent = fmt(total);
-    // construir WA
-    const lines = [];
-    const rows = Array.from(document.querySelectorAll('tbody tr'));
-    rows.forEach(row=>{
-      const cantEl = row.querySelector('.cantidad');
-      const cant = parseInt(cantEl?.value||'0')||0;
-      if(cant>0){
-        const nombre = row.cells[0]?.textContent?.trim()||'Producto';
-        lines.push(`• ${nombre} x${cant}`);
-      }
-    });
-    const msg = `Hola Barretodo, quiero cotizar:\n${lines.join('\n')}`;
-    const wa = document.getElementById('btnWA');
-    if(wa) wa.href = `https://wa.me/541151022954?text=${encodeURIComponent(msg)}`;
-  }
-
-  // Eventos: cambios en cantidades
-  document.addEventListener('input', (e)=>{
-    if(e.target && e.target.classList && e.target.classList.contains('cantidad')){
-      render();
-    }
-  });
-
-  // Botones sticky
-  const modal = document.getElementById('modal');
-  const abrir = document.getElementById('abrir-modal');
-  const btnViewCart = document.getElementById('btnViewCart');
-  const btnCheckout = document.getElementById('btnCheckout');
-  if(btnViewCart && abrir){
-    btnViewCart.addEventListener('click', ()=> abrir.click());
-  }
-  if(btnCheckout && abrir){
-    btnCheckout.addEventListener('click', ()=> abrir.click());
-  }
-
-  // Render inicial y periódicamente por si el catálogo se carga async
-  render();
-  const obs = new MutationObserver(render);
-  obs.observe(document.body, {subtree:true, childList:true});
-  setInterval(render, 1500);
-})();
 </script></body>
 </html>
 <!-- Modal para completar datos del cliente -->
