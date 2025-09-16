@@ -5,8 +5,7 @@
 <head>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <meta charset="utf-8"/>
-<title>Catálogo distribuidora de productos de limpieza | Barretodo CABA</title>
-   <link rel="canonical" href="https://barretodo.com.ar/catalogo/">
+<title>Distribuidora mayorista de productos de limpieza en CABA | Barretodo</title>
 <style>
     * { box-sizing: border-box; }
     body { font-family: Arial, sans-serif; }
@@ -81,27 +80,6 @@
     }
     button:hover { background-color: #218838; }
 
-/* Sticky summary minimal */
-.sticky-cart{
-  position: fixed; left:0; right:0; bottom:0; z-index: 90;
-  background: #fff; border-top:1px solid #e8e4da;
-  display:flex; justify-content: space-between; align-items:center;
-  padding: 10px 14px; box-shadow: 0 -6px 18px rgba(0,0,0,.06); gap:12px;
-}
-.sticky-cart .sc-left{ font-size:15px; color:#1F2D2C; }
-.sticky-cart .sc-left strong{ font-weight:800; }
-.sticky-cart .sc-note{ color:#6b6b6b; margin-left:10px; font-size:13px; }
-.sticky-cart .sc-right{ display:flex; gap:8px; flex-wrap:wrap; }
-.btn-whatsapp{ background:#25D366; color:#fff; border:1px solid #1ebe5d; }
-.btn-whatsapp:hover{ background:#1ebe5d; color:#fff; }
-
-@media (max-width: 640px){
-  .sticky-cart{ flex-direction:column; align-items:stretch; }
-  .sticky-cart .sc-right{ justify-content:space-between; }
-}
-
-
-   
   </style>
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 <script>
@@ -113,14 +91,6 @@
 <body style="background-color:#f4f4f4;">
 <div style="text-align:center;margin-top:20px;"><img alt="Logo" loading="lazy" src="logo-barretodo.jpeg" width="180"/></div>
 <h1>Catálogo interactivo BARRETODO</h1>
-
-   <div class="mensaje-descuento" style="
-  background:#f7f3ec; border:1px solid #eadfc8; color:#1F2D2C;
-  padding:10px 16px; border-radius:12px; max-width:900px; margin:12px auto;">
-  <strong>Mayorista real en CABA:</strong> entregas en 24–48 h · todos los medios de pago · Asesoramiento por WhatsApp
-</div>
-
-   
 <div class="mensaje-descuento">
   5% de descuento en compras mayores a $250.000 (SURTIDAS)<br/>
   10% de descuento en compras mayores a $500.000 (SURTIDAS)
@@ -310,85 +280,7 @@ async function cargarCatalogo() {
    actualizarTotales(); // Ejecutar una vez para iniciar los totales correctamente
 }
 window.addEventListener('DOMContentLoaded', cargarCatalogo);
-</script>
-
-<!-- Barra de resumen fija -->
-<div class="sticky-cart" id="stickyCart" style="display:none">
-  <div class="sc-left">
-    <strong id="sc-count">0</strong> productos · <span id="sc-total">$0</span>
-    <span class="sc-note">Envíos 24–48 h · Todos los medios de pago</span>
-  </div>
-  <div class="sc-right">
-    <button class="btn btn-secondary" id="btnViewCart" type="button">VER CARRITO</button>
-    <button class="btn btn-primary" id="btnCheckout" type="button">COTIZAR</button>
-    <a class="btn btn-whatsapp" id="btnWA" target="_blank" rel="noopener">WHATSAPP</a>
-  </div>
-</div>
-<script>
-(function(){
-  // Lee totales desde TU DOM (no toca tu lógica)
-  function leerSeleccion(){
-    const rows = Array.from(document.querySelectorAll('tbody tr'));
-    let items = 0;
-    const lines = [];
-    rows.forEach(row=>{
-      const cantEl = row.querySelector('.cantidad');
-      const cant = parseInt(cantEl && cantEl.value ? cantEl.value : '0', 10) || 0;
-      if(cant>0){
-        items += cant;
-        const nombre = (row.cells[0]?.textContent || 'Producto').trim();
-        lines.push(`• ${nombre} x${cant}`);
-      }
-    });
-    // Total: tomamos el número visible de tu UI (#total-final)
-    const totalEl = document.getElementById('total-final');
-    const totalTxt = totalEl ? totalEl.textContent : '$0';
-    return { items, totalTxt, lines };
-  }
-
-  function renderSticky(){
-    const { items, totalTxt, lines } = leerSeleccion();
-    const bar = document.getElementById('stickyCart');
-    const c = document.getElementById('sc-count');
-    const t = document.getElementById('sc-total');
-    const wa = document.getElementById('btnWA');
-    if(!bar) return;
-
-    if(items>0){ bar.style.display = 'flex'; } else { bar.style.display = 'none'; }
-    if(c) c.textContent = items;
-    if(t) t.textContent = totalTxt;
-
-    const msg = `Hola Barretodo, quiero cotizar:%0A${encodeURIComponent(lines.join('%0A'))}%0ATotal (estimado): ${encodeURIComponent(totalTxt)}`;
-    if(wa) wa.href = `https://wa.me/541151022954?text=${msg}`;
-  }
-
-  // Botones: reutiliza tu botón existente #abrir-modal (no rompo nada)
-  function wireButtons(){
-    const abrir = document.getElementById('abrir-modal');
-    const ver = document.getElementById('btnViewCart');
-    const cot = document.getElementById('btnCheckout');
-    if(ver && abrir) ver.addEventListener('click', ()=> abrir.click());
-    if(cot && abrir) cot.addEventListener('click', ()=> abrir.click());
-  }
-
-  // Escuchar cambios de cantidades
-  document.addEventListener('input', (e)=>{
-    if(e.target && e.target.classList && e.target.classList.contains('cantidad')){
-      renderSticky();
-    }
-  });
-
-  // Observar cambios del DOM por si se cargan productos con JS
-  const obs = new MutationObserver(renderSticky);
-  obs.observe(document.body, {subtree:true, childList:true});
-
-  wireButtons();
-  renderSticky();
-})();
-</script>
-
-
-</body>
+</script></body>
 </html>
 <!-- Modal para completar datos del cliente -->
 <div id="modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:#00000088; z-index:1000;">
