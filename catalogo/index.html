@@ -80,6 +80,27 @@
     }
     button:hover { background-color: #218838; }
 
+/* Sticky summary minimal */
+.sticky-cart{
+  position: fixed; left:0; right:0; bottom:0; z-index: 90;
+  background: #fff; border-top:1px solid #e8e4da;
+  display:flex; justify-content: space-between; align-items:center;
+  padding: 10px 14px; box-shadow: 0 -6px 18px rgba(0,0,0,.06); gap:12px;
+}
+.sticky-cart .sc-left{ font-size:15px; color:#1F2D2C; }
+.sticky-cart .sc-left strong{ font-weight:800; }
+.sticky-cart .sc-note{ color:#6b6b6b; margin-left:10px; font-size:13px; }
+.sticky-cart .sc-right{ display:flex; gap:8px; flex-wrap:wrap; }
+.btn-whatsapp{ background:#25D366; color:#fff; border:1px solid #1ebe5d; }
+.btn-whatsapp:hover{ background:#1ebe5d; color:#fff; }
+
+@media (max-width: 640px){
+  .sticky-cart{ flex-direction:column; align-items:stretch; }
+  .sticky-cart .sc-right{ justify-content:space-between; }
+}
+
+
+   
   </style>
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 <script>
