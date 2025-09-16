@@ -315,6 +315,68 @@ window.addEventListener('DOMContentLoaded', cargarCatalogo);
     <a class="btn btn-whatsapp" id="btnWA" target="_blank" rel="noopener">WHATSAPP</a>
   </div>
 </div>
+<script>
+(function(){
+  // Lee totales desde TU DOM (no toca tu lógica)
+  function leerSeleccion(){
+    const rows = Array.from(document.querySelectorAll('tbody tr'));
+    let items = 0;
+    const lines = [];
+    rows.forEach(row=>{
+      const cantEl = row.querySelector('.cantidad');
+      const cant = parseInt(cantEl && cantEl.value ? cantEl.value : '0', 10) || 0;
+      if(cant>0){
+        items += cant;
+        const nombre = (row.cells[0]?.textContent || 'Producto').trim();
+        lines.push(`• ${nombre} x${cant}`);
+      }
+    });
+    // Total: tomamos el número visible de tu UI (#total-final)
+    const totalEl = document.getElementById('total-final');
+    const totalTxt = totalEl ? totalEl.textContent : '$0';
+    return { items, totalTxt, lines };
+  }
+
+  function renderSticky(){
+    const { items, totalTxt, lines } = leerSeleccion();
+    const bar = document.getElementById('stickyCart');
+    const c = document.getElementById('sc-count');
+    const t = document.getElementById('sc-total');
+    const wa = document.getElementById('btnWA');
+    if(!bar) return;
+
+    if(items>0){ bar.style.display = 'flex'; } else { bar.style.display = 'none'; }
+    if(c) c.textContent = items;
+    if(t) t.textContent = totalTxt;
+
+    const msg = `Hola Barretodo, quiero cotizar:%0A${encodeURIComponent(lines.join('%0A'))}%0ATotal (estimado): ${encodeURIComponent(totalTxt)}`;
+    if(wa) wa.href = `https://wa.me/541151022954?text=${msg}`;
+  }
+
+  // Botones: reutiliza tu botón existente #abrir-modal (no rompo nada)
+  function wireButtons(){
+    const abrir = document.getElementById('abrir-modal');
+    const ver = document.getElementById('btnViewCart');
+    const cot = document.getElementById('btnCheckout');
+    if(ver && abrir) ver.addEventListener('click', ()=> abrir.click());
+    if(cot && abrir) cot.addEventListener('click', ()=> abrir.click());
+  }
+
+  // Escuchar cambios de cantidades
+  document.addEventListener('input', (e)=>{
+    if(e.target && e.target.classList && e.target.classList.contains('cantidad')){
+      renderSticky();
+    }
+  });
+
+  // Observar cambios del DOM por si se cargan productos con JS
+  const obs = new MutationObserver(renderSticky);
+  obs.observe(document.body, {subtree:true, childList:true});
+
+  wireButtons();
+  renderSticky();
+})();
+</script>
 
 
 </body>
