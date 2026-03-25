@@ -43,7 +43,15 @@
     }
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
     html{scroll-behavior:smooth}
-    body{font-family:'Sora',sans-serif;color:var(--text);background:var(--white);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+    body{font-family:'Sora',sans-serif;color:var(--text);background-color:var(--white);
+      background-image:
+        linear-gradient(rgba(15,35,64,.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(15,35,64,.06) 1px, transparent 1px),
+        radial-gradient(circle at top left, rgba(232,150,10,.055), transparent 24%),
+        radial-gradient(circle at 85% 15%, rgba(15,35,64,.04), transparent 22%);
+      background-size:40px 40px,40px 40px,auto,auto;
+      background-position:0 0,0 0,0 0,0 0;
+      overflow-x:hidden;-webkit-font-smoothing:antialiased;position:relative}
     img{max-width:100%;display:block}
     a{text-decoration:none;color:inherit}
     ul{list-style:none}
@@ -110,25 +118,67 @@
     .reveal.visible{opacity:1;transform:none}
 
     /* ══ NAV ══ */
-    nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,.96);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--border);transition:box-shadow .3s}
-    nav.scrolled{box-shadow:0 4px 24px rgba(15,35,64,.08)}
-    .nav-inner{display:flex;align-items:center;justify-content:space-between;height:68px;max-width:1140px;margin-inline:auto;padding:0 24px}
-    .nav-logo{display:flex;align-items:center;gap:12px}
-    .nav-logo img{height:36px;width:36px;object-fit:contain;border-radius:8px}
-    .nav-brand{font-family:'Bebas Neue',sans-serif;font-size:1.65rem;letter-spacing:.1em;color:var(--navy)}
+    #main-nav{
+      position:fixed;top:14px;left:18px;right:18px;z-index:100;
+      background:rgba(255,255,255,.92);
+      backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+      border:1px solid rgba(15,35,64,.1);
+      box-shadow:0 12px 36px rgba(15,35,64,.08), inset 0 1px 0 rgba(255,255,255,.9);
+      border-radius:22px;
+      transition:box-shadow .3s,transform .3s,background .3s,border-color .3s;
+    }
+    #main-nav::after{
+      content:'';position:absolute;left:20px;right:20px;bottom:0;height:2px;border-radius:999px;
+      background:linear-gradient(90deg,rgba(232,150,10,0), rgba(232,150,10,.45), rgba(15,35,64,.1), rgba(232,150,10,0));
+      opacity:.9;
+    }
+    #main-nav.scrolled{
+      background:rgba(255,255,255,.97);
+      box-shadow:0 18px 50px rgba(15,35,64,.12), inset 0 1px 0 rgba(255,255,255,.95);
+      border-color:rgba(15,35,64,.14);
+      transform:translateY(-2px);
+    }
+    .nav-inner{
+      display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:18px;
+      min-height:82px;max-width:1180px;margin-inline:auto;padding:10px 22px;
+    }
+    .nav-logo{display:flex;align-items:center;gap:12px;position:relative;z-index:2}
+    .nav-logo img{height:38px;width:38px;object-fit:contain;border-radius:8px}
+    .nav-brand{font-family:'Bebas Neue',sans-serif;font-size:1.72rem;letter-spacing:.1em;color:var(--navy)}
     .nav-brand span{color:var(--gold)}
-    .nav-right{display:flex;align-items:center;gap:16px}
-    .nav-links{display:none;gap:28px}
-    @media(min-width:900px){.nav-links{display:flex}}
-    .nav-links a{font-size:.8rem;font-weight:600;color:var(--muted);transition:color .18s}
-    .nav-links a:hover{color:var(--navy)}
-    .nav-phone{display:none;font-size:.8rem;color:var(--muted);font-weight:500}
+    .nav-links{
+      display:none;align-items:center;justify-content:center;gap:8px;
+      background:linear-gradient(180deg, rgba(248,249,251,.92), rgba(255,255,255,.98));
+      border:1px solid rgba(15,35,64,.08);
+      border-radius:999px;padding:8px;
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.95), 0 6px 18px rgba(15,35,64,.05);
+    }
+    @media(min-width:980px){.nav-links{display:flex}}
+    .nav-links a{
+      display:inline-flex;align-items:center;justify-content:center;
+      min-height:42px;padding:0 16px;border-radius:999px;
+      font-size:.83rem;font-weight:700;color:var(--navy2);
+      letter-spacing:.01em;transition:background .18s,color .18s,transform .18s,box-shadow .18s;
+    }
+    .nav-links a:hover{
+      background:var(--gold-lt);color:var(--navy);transform:translateY(-1px);
+      box-shadow:inset 0 0 0 1px rgba(232,150,10,.18);
+    }
+    .nav-right{display:flex;align-items:center;gap:14px;justify-self:end}
+    .nav-phone{
+      display:none;font-size:.82rem;color:var(--muted);font-weight:600;
+      padding:0 2px;white-space:nowrap
+    }
     @media(min-width:700px){.nav-phone{display:block}}
-    .btn-nav{padding:10px 22px;font-size:.83rem;border-radius:100px;background:var(--gold);color:var(--navy);font-weight:700;font-family:'Sora',sans-serif;border:none;cursor:pointer;box-shadow:0 4px 16px rgba(232,150,10,.25);transition:background .18s,transform .18s}
-    .btn-nav:hover{background:var(--gold2);transform:translateY(-1px)}
+    .btn-nav{
+      padding:11px 22px;font-size:.84rem;border-radius:999px;background:var(--gold);color:var(--navy);
+      font-weight:700;font-family:'Sora',sans-serif;border:none;cursor:pointer;
+      box-shadow:0 8px 20px rgba(232,150,10,.24);transition:background .18s,transform .18s,box-shadow .18s
+    }
+    .btn-nav:hover{background:var(--gold2);transform:translateY(-1px);box-shadow:0 12px 26px rgba(232,150,10,.3)}
 
     /* ══ HERO ══ */
-    #hero{min-height:100svh;display:flex;align-items:center;background:var(--white);padding:100px 0 72px;overflow:hidden}
+    #hero{min-height:100svh;display:flex;align-items:center;background:transparent;padding:132px 0 72px;overflow:hidden}
     #hero .gg{background-size:48px 48px;mask-image:radial-gradient(ellipse 70% 90% at 100% 50%,black 0%,transparent 65%);-webkit-mask-image:radial-gradient(ellipse 70% 90% at 100% 50%,black 0%,transparent 65%)}
     .hero-inner{position:relative;z-index:2;display:grid;grid-template-columns:1fr;gap:56px;align-items:center}
     @media(min-width:860px){.hero-inner{grid-template-columns:1.05fr 1fr;gap:72px}}
@@ -223,13 +273,15 @@
     .testim-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px;margin-top:52px}
     .testim-card{background:var(--white);border:1.5px solid var(--border);border-radius:var(--r);padding:28px 24px;box-shadow:var(--sh);transition:transform .2s,box-shadow .2s}
     .testim-card:hover{transform:translateY(-4px);box-shadow:var(--shm)}
-    .stars{color:var(--gold);font-size:.9rem;margin-bottom:14px;letter-spacing:3px}
     .testim-card blockquote{font-size:.9rem;line-height:1.75;color:var(--text);margin-bottom:20px;padding-left:16px;position:relative}
     .testim-card blockquote::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;border-radius:2px;background:var(--gold-lt)}
     .testim-author{display:flex;align-items:center;gap:12px}
     .testim-avatar{width:40px;height:40px;border-radius:50%;background:var(--navy);display:grid;place-items:center;font-family:'Bebas Neue',sans-serif;font-size:1.05rem;color:var(--gold);flex-shrink:0}
-    .testim-name{font-weight:700;font-size:.86rem;color:var(--navy)}
-    .testim-role{font-size:.74rem;color:var(--muted);margin-top:2px}
+    .testim-meta{display:flex;flex-direction:column;gap:3px}
+    .testim-head{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+    .testim-name{font-weight:700;font-size:.86rem;color:var(--navy);line-height:1.2}
+    .stars{display:inline-flex;align-items:center;color:var(--gold);font-size:.78rem;letter-spacing:2px;line-height:1}
+    .testim-role{font-size:.74rem;color:var(--muted);margin-top:0}
 
     /* ══ FORMULARIO (dark section) ══ */
     #formulario{background:var(--navy);overflow:hidden}
@@ -318,8 +370,16 @@
       h2.section-title{font-size:2.2rem}
       .form-card{padding:28px 20px}
     }
+    @media(max-width:639px){
+      #main-nav{top:10px;left:10px;right:10px;border-radius:18px}
+      .nav-inner{grid-template-columns:auto auto;min-height:74px;padding:10px 14px}
+      .nav-right{gap:10px}
+      .btn-nav{padding:10px 16px}
+    }
     @media(max-width:479px){
-      .nav-inner{padding:0 16px}
+      .nav-brand{font-size:1.45rem}
+      .nav-logo{gap:10px}
+      .nav-logo img{height:34px;width:34px}
       h1.hero-title{font-size:3rem}
     }
   </style>
@@ -334,12 +394,12 @@
       <span class="nav-brand">BARRE<span>TODO</span></span>
     </a>
     <div class="nav-right">
-      <nav class="nav-links" aria-label="Secciones">
+      <div class="nav-links" aria-label="Secciones">
         <a href="#beneficios">Por qué elegirnos</a>
         <a href="#sectores">Sectores</a>
         <a href="#formulario">Cotizá</a>
         <a href="#quienes-somos">Nosotros</a>
-      </nav>
+      </div>
       <span class="nav-phone">+54 11 5102-2954</span>
       <a href="https://wa.me/5491151022954?text=Hola%2C%20estoy%20buscando%20un%20proveedor%20de%20limpieza%20para%20mi%20empresa." class="btn-nav" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">WhatsApp</a>
     </div>
@@ -598,9 +658,9 @@
     <div class="label">Lo que dicen nuestros clientes</div>
     <h2 class="section-title" id="testimonios-title">Empresas que ya confían en nosotros.</h2>
     <div class="testim-grid">
-      <div class="testim-card reveal"><div class="stars" aria-label="5 estrellas">★★★★★</div><blockquote>Antes perdíamos horas coordinando compras de limpieza. Ahora BARRETODO nos arma el pedido mensual y llega puntual. Muy recomendable.</blockquote><div class="testim-author"><div class="testim-avatar" aria-hidden="true">MC</div><div><div class="testim-name">Marcela C.</div><div class="testim-role">Administradora de Consorcio · CABA</div></div></div></div>
-      <div class="testim-card reveal" style="transition-delay:.1s"><div class="stars" aria-label="5 estrellas">★★★★★</div><blockquote>La atención es muy personalizada. Nos conocen, saben lo que usamos y nunca tuvimos faltantes desde que trabajamos con ellos.</blockquote><div class="testim-author"><div class="testim-avatar" aria-hidden="true">RG</div><div><div class="testim-name">Roberto G.</div><div class="testim-role">Gerente de Operaciones · Clínica privada</div></div></div></div>
-      <div class="testim-card reveal" style="transition-delay:.2s"><div class="stars" aria-label="5 estrellas">★★★★★</div><blockquote>Somos un restaurante con alto consumo de descartables. Desde que empezamos con BARRETODO bajamos costos y simplificamos todo.</blockquote><div class="testim-author"><div class="testim-avatar" aria-hidden="true">LP</div><div><div class="testim-name">Laura P.</div><div class="testim-role">Dueña · Restaurante en Palermo</div></div></div></div>
+      <div class="testim-card reveal"><blockquote>Antes perdíamos horas coordinando compras de limpieza. Ahora BARRETODO nos arma el pedido mensual y llega puntual. Muy recomendable.</blockquote><div class="testim-author"><div class="testim-avatar" aria-hidden="true">MC</div><div class="testim-meta"><div class="testim-head"><div class="testim-name">Marcela C.</div><div class="stars" aria-label="5 estrellas">★★★★★</div></div><div class="testim-role">Administradora de Consorcio · CABA</div></div></div></div>
+      <div class="testim-card reveal" style="transition-delay:.1s"><blockquote>La atención es muy personalizada. Nos conocen, saben lo que usamos y nunca tuvimos faltantes desde que trabajamos con ellos.</blockquote><div class="testim-author"><div class="testim-avatar" aria-hidden="true">RG</div><div class="testim-meta"><div class="testim-head"><div class="testim-name">Roberto G.</div><div class="stars" aria-label="5 estrellas">★★★★★</div></div><div class="testim-role">Gerente de Operaciones · Clínica privada</div></div></div></div>
+      <div class="testim-card reveal" style="transition-delay:.2s"><blockquote>Somos un restaurante con alto consumo de descartables. Desde que empezamos con BARRETODO bajamos costos y simplificamos todo.</blockquote><div class="testim-author"><div class="testim-avatar" aria-hidden="true">LP</div><div class="testim-meta"><div class="testim-head"><div class="testim-name">Laura P.</div><div class="stars" aria-label="5 estrellas">★★★★★</div></div><div class="testim-role">Dueña · Restaurante en Palermo</div></div></div></div>
     </div>
   </div>
 </section>
