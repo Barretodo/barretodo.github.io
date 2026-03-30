@@ -218,7 +218,13 @@
     /* Hero visual */
     .hero-visual{display:flex;align-items:center;justify-content:center;position:relative}
     .hero-svg-wrap{width:100%;max-width:480px;border-radius:24px;overflow:hidden;border:1.5px solid var(--border);box-shadow:var(--shm);background:var(--white)}
-    .hero-svg-wrap svg{display:block;width:100%;height:auto}
+    .hero-image{
+  display:block;
+  width:100%;
+  height:auto;
+}
+    .hero-svg-wrap svg,
+.hero-svg-wrap img{display:block;width:100%;height:auto}
     .hero-chip{position:absolute;background:var(--white);border:1px solid var(--border);border-radius:12px;padding:10px 16px;box-shadow:var(--shm);display:flex;align-items:center;gap:9px;font-size:.78rem;font-weight:600;color:var(--navy)}
     .chip-icon{width:30px;height:30px;border-radius:8px;background:var(--gold-lt);color:var(--gold);display:grid;place-items:center;flex-shrink:0}
     .chip-icon svg{width:16px;height:16px}
@@ -456,136 +462,18 @@
       <!-- SVG Illustration -->
       <div class="hero-visual reveal" style="transition-delay:.12s">
         <div class="hero-svg-wrap">
-          <svg viewBox="0 0 480 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ilustración de distribución de productos de limpieza a empresas en CABA">
-            <defs>
-              <linearGradient id="bgG" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#FFFBF2"/><stop offset="100%" stop-color="#F8F9FB"/></linearGradient>
-              <linearGradient id="bldG" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#1e3a5f"/><stop offset="100%" stop-color="#0f2340"/></linearGradient>
-              <linearGradient id="boxG" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#F5A623"/><stop offset="100%" stop-color="#E8960A"/></linearGradient>
-              <linearGradient id="vanG" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#122742"/><stop offset="100%" stop-color="#1a3050"/></linearGradient>
-              <linearGradient id="flG" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#E2E5EC"/><stop offset="100%" stop-color="#CDD1DA"/></linearGradient>
-            </defs>
-            <!-- Background -->
-            <rect width="480" height="400" fill="url(#bgG)"/>
-            <!-- Subtle gold grid lines -->
-            <g stroke="#E8960A" stroke-width=".6" opacity=".18">
-              <line x1="0" y1="80" x2="480" y2="80"/><line x1="0" y1="160" x2="480" y2="160"/><line x1="0" y1="240" x2="480" y2="240"/>
-              <line x1="80" y1="0" x2="80" y2="400"/><line x1="160" y1="0" x2="160" y2="400"/><line x1="240" y1="0" x2="240" y2="400"/><line x1="320" y1="0" x2="320" y2="400"/><line x1="400" y1="0" x2="400" y2="400"/>
-            </g>
-            <!-- Ground -->
-            <rect x="0" y="338" width="480" height="62" fill="url(#flG)"/>
-            <rect x="0" y="336" width="480" height="4" fill="#BCC1CC"/>
-            <!-- Building -->
-            <rect x="30" y="72" width="190" height="268" rx="3" fill="url(#bldG)"/>
-            <!-- Windows -->
-            <g fill="#3A6EA8" opacity=".5">
-              <rect x="46" y="92" width="28" height="20" rx="2"/><rect x="84" y="92" width="28" height="20" rx="2"/><rect x="122" y="92" width="28" height="20" rx="2"/><rect x="160" y="92" width="28" height="20" rx="2"/>
-              <rect x="46" y="126" width="28" height="20" rx="2"/><rect x="84" y="126" width="28" height="20" rx="2"/><rect x="122" y="126" width="28" height="20" rx="2"/><rect x="160" y="126" width="28" height="20" rx="2"/>
-              <rect x="46" y="160" width="28" height="20" rx="2"/><rect x="84" y="160" width="28" height="20" rx="2"/><rect x="122" y="160" width="28" height="20" rx="2"/><rect x="160" y="160" width="28" height="20" rx="2"/>
-              <rect x="46" y="194" width="28" height="20" rx="2"/><rect x="84" y="194" width="28" height="20" rx="2"/><rect x="122" y="194" width="28" height="20" rx="2"/><rect x="160" y="194" width="28" height="20" rx="2"/>
-            </g>
-            <!-- Lit windows -->
-            <rect x="84" y="92" width="28" height="20" rx="2" fill="#FEF3DC" opacity=".9"/>
-            <rect x="160" y="126" width="28" height="20" rx="2" fill="#FEF3DC" opacity=".9"/>
-            <rect x="46" y="160" width="28" height="20" rx="2" fill="#FEF3DC" opacity=".85"/>
-            <rect x="122" y="194" width="28" height="20" rx="2" fill="#FEF3DC" opacity=".85"/>
-            <!-- Building sign -->
-            <rect x="44" y="228" width="162" height="26" rx="4" fill="rgba(0,0,0,.22)"/>
-            <text x="125" y="245" font-family="'Bebas Neue',sans-serif" font-size="12" fill="#F5A623" text-anchor="middle" letter-spacing="2">EMPRESA CLIENTE</text>
-            <!-- Door -->
-            <rect x="100" y="280" width="50" height="60" rx="3" fill="#0a1829"/>
-            <rect x="100" y="280" width="24" height="60" rx="3" fill="#0d1e34"/>
-            <!-- Van -->
-            <rect x="295" y="242" width="158" height="96" rx="7" fill="url(#vanG)"/>
-            <rect x="295" y="242" width="50" height="96" rx="7" fill="#0f2035"/>
-            <rect x="302" y="252" width="36" height="28" rx="4" fill="#4A7AB5" opacity=".65"/>
-            <line x1="345" y1="244" x2="345" y2="336" stroke="#0a1829" stroke-width="2"/>
-            <!-- Van logo panel -->
-            <rect x="352" y="262" width="90" height="44" rx="4" fill="rgba(255,255,255,.05)"/>
-            <text x="397" y="280" font-family="'Bebas Neue',sans-serif" font-size="12" fill="#F5A623" text-anchor="middle" letter-spacing="1.5">BARRETODO</text>
-            <text x="397" y="294" font-family="sans-serif" font-size="7.5" fill="rgba(255,255,255,.45)" text-anchor="middle">DISTRIBUIDORA · CABA</text>
-            <!-- Wheels -->
-            <circle cx="330" cy="338" r="16" fill="#080F1C"/><circle cx="330" cy="338" r="10" fill="#121E2A"/><circle cx="330" cy="338" r="4" fill="#1e2e3c"/>
-            <circle cx="422" cy="338" r="16" fill="#080F1C"/><circle cx="422" cy="338" r="10" fill="#121E2A"/><circle cx="422" cy="338" r="4" fill="#1e2e3c"/>
-            <!-- Boxes stacked by van -->
-            <rect x="252" y="304" width="52" height="34" rx="3" fill="url(#boxG)"/>
-            <rect x="252" y="304" width="52" height="8" rx="3" fill="#F5A623"/>
-            <line x1="278" y1="304" x2="278" y2="338" stroke="rgba(255,255,255,.25)" stroke-width="1.5"/>
-            <rect x="258" y="273" width="44" height="32" rx="3" fill="#E8960A"/>
-            <rect x="258" y="273" width="44" height="7" rx="3" fill="#F5A623"/>
-            <rect x="263" y="282" width="34" height="11" rx="2" fill="rgba(15,35,64,.28)"/>
-            <text x="280" y="291" font-family="'Bebas Neue',sans-serif" font-size="6.5" fill="rgba(255,255,255,.8)" text-anchor="middle" letter-spacing=".8">BARRETODO</text>
-            <!-- Delivery person -->
-            <!-- Body -->
-            <rect x="208" y="224" width="38" height="92" rx="8" fill="#1a3050"/>
-            <rect x="215" y="224" width="24" height="36" rx="4" fill="#122742"/>
-            <!-- Head -->
-            <circle cx="227" cy="212" r="17" fill="#F5CBA7"/>
-            <ellipse cx="227" cy="199" rx="17" ry="9" fill="#2C1810"/>
-            <!-- Cap -->
-            <ellipse cx="227" cy="198" rx="19" ry="7" fill="#E8960A"/>
-            <rect x="208" y="196" width="38" height="5" rx="2.5" fill="#F5A623"/>
-            <!-- Smile -->
-            <path d="M222 218 Q227 222 232 218" stroke="#C68642" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-            <!-- Left arm reaching to building (holding clipboard) -->
-            <path d="M208 240 Q175 238 158 258" stroke="#F5CBA7" stroke-width="9" fill="none" stroke-linecap="round"/>
-            <!-- Right arm to box stack -->
-            <path d="M246 240 Q258 248 262 272" stroke="#F5CBA7" stroke-width="9" fill="none" stroke-linecap="round"/>
-            <!-- Clipboard -->
-            <rect x="144" y="250" width="22" height="30" rx="3" fill="white"/>
-            <rect x="144" y="250" width="22" height="7" rx="3" fill="#E8960A"/>
-            <line x1="149" y1="263" x2="161" y2="263" stroke="#C0C8D8" stroke-width="1.5"/>
-            <line x1="149" y1="269" x2="161" y2="269" stroke="#C0C8D8" stroke-width="1.5"/>
-            <line x1="149" y1="275" x2="157" y2="275" stroke="#C0C8D8" stroke-width="1.5"/>
-            <!-- Legs -->
-            <rect x="210" y="310" width="14" height="28" rx="5" fill="#0f2340"/>
-            <rect x="228" y="310" width="14" height="28" rx="5" fill="#0f2340"/>
-            <ellipse cx="217" cy="338" rx="10" ry="4" fill="#0a1829"/>
-            <ellipse cx="235" cy="338" rx="10" ry="4" fill="#0a1829"/>
-            <!-- Manager in door -->
-            <rect x="114" y="248" width="28" height="70" rx="6" fill="#2C3E50"/>
-            <rect x="125" y="250" width="6" height="24" rx="3" fill="#E8960A"/>
-            <circle cx="128" cy="237" r="14" fill="#FDEBD0"/>
-            <ellipse cx="128" cy="226" rx="14" ry="7" fill="#1a1a1a"/>
-            <path d="M114 264 Q96 262 88 264" stroke="#FDEBD0" stroke-width="8" fill="none" stroke-linecap="round"/>
-            <path d="M142 264 Q156 260 160 262" stroke="#FDEBD0" stroke-width="8" fill="none" stroke-linecap="round"/>
-            <rect x="128" y="310" width="10" height="28" rx="4" fill="#1C2B3A"/>
-            <rect x="142" y="310" width="10" height="28" rx="4" fill="#1C2B3A"/>
-            <ellipse cx="133" cy="338" rx="9" ry="4" fill="#0d1929"/>
-            <ellipse cx="147" cy="338" rx="9" ry="4" fill="#0d1929"/>
-            <!-- Product icons top -->
-            <!-- Spray bottle -->
-            <g transform="translate(18,24)">
-              <rect x="0" y="10" width="16" height="26" rx="4" fill="#4A90D9" opacity=".85"/>
-              <rect x="3" y="2" width="10" height="10" rx="2" fill="#3A7AC9"/>
-              <rect x="11" y="5" width="12" height="5" rx="2" fill="#2A6AB9"/>
-              <rect x="3" y="10" width="10" height="5" fill="rgba(255,255,255,.18)"/>
-            </g>
-            <!-- Toilet paper -->
-            <g transform="translate(428,32)">
-              <ellipse cx="17" cy="17" rx="17" ry="17" fill="white" stroke="#E8EBF0" stroke-width="2"/>
-              <ellipse cx="17" cy="17" rx="7" ry="7" fill="#F0F2F5"/>
-              <ellipse cx="17" cy="17" rx="3" ry="3" fill="#E8EBF0"/>
-            </g>
-            <!-- Mop -->
-            <g transform="translate(394,78)">
-              <rect x="11" y="0" width="4" height="36" rx="2" fill="#9B8060"/>
-              <ellipse cx="13" cy="38" rx="11" ry="5" fill="#4A90D9" opacity=".65"/>
-            </g>
-            <!-- Stars/sparkles -->
-            <g fill="#E8960A" opacity=".5">
-              <polygon points="52,52 54,58 60,58 55,62 57,68 52,64 47,68 49,62 44,58 50,58"/>
-              <polygon points="418,148 420,153 425,153 421,156 423,161 418,158 413,161 415,156 411,153 416,153" transform="scale(.75) translate(140,60)"/>
-            </g>
-            <!-- Checkmark badge -->
-            <g transform="translate(362,24)">
-              <circle cx="22" cy="22" r="22" fill="rgba(232,150,10,.1)"/>
-              <circle cx="22" cy="22" r="16" fill="white" stroke="#E8960A" stroke-width="1.5"/>
-              <polyline points="13,22 20,29 31,15" stroke="#E8960A" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-            </g>
-            <!-- Bottom strip -->
-            <rect x="0" y="368" width="480" height="32" fill="rgba(15,35,64,.05)"/>
-            <text x="240" y="388" font-family="'Bebas Neue',sans-serif" font-size="10.5" fill="#8B96AA" text-anchor="middle" letter-spacing="3.5">DISTRIBUCIÓN · CABA · 24-48 HS</text>
-          </svg>
+
+<img
+  src="hero-barretodo.webp"
+  alt="Distribución de productos de limpieza e higiene para empresas en CABA"
+  class="hero-image"
+  width="480"
+  height="400"
+  loading="eager"
+  decoding="async"
+/>
+
+          
         </div>
         <div class="hero-chip chip-1" aria-hidden="true">
           <div class="chip-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg></div>
