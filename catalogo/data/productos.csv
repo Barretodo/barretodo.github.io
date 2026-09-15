@@ -1,0 +1,78 @@
+codigo;"categoria";"nombre";"presentacion";"precio";"imagen";activo
+PAP001;papeles;"Papel higienico alto metraje";"8 rollos x 150 m";13900;"img/products/alto-150.webp";si
+PAP002;papeles;"Papel higienico alto metraje";"8 rollos x 300 m";24900;"img/products/alto-300.webp";si
+PAP003;papeles;"Toallas intercaladas";caja 2000 u;19900;"img/products/intercaladas-2000.webp";si
+PAP004;papeles;"Bobina industrial";"2 rollos x 270 m";24900;"img/products/bobina-industrial.webp";si
+PAP005;papeles;"Toalla en rollo";"4 rollos x 200 m";24900;"img/products/toalla-rollo.webp";si
+PAP006;papeles;"Bolson rollo cocina";"8 rollos x 200 paños";14900;"img/products/bolson-cocina.webp";si
+PAP007;papeles;"Bolson higienico 80m";"30 rollos x 80 m";16900;"img/products/bolson-h80m.webp";si
+PAP008;papeles;"Bolson higienico 30m DH";"64 rollos x 30 m DH";35900;"img/products/bolson-30mdh.webp";si
+PAP009;papeles;"Bolson higienico 50m DH";"48 rollos x 50 m DH";44900;"img/products/bolson-50mdh.webp";si
+BOL001;bolsas;Bolsas 45 x 60;Pack x 50;;"img/products/bolsa-negra.webp";si
+BOL002;bolsas;Bolsas 50 x 70;Pack x 50;;"img/products/bolsa-negra.webp";si
+BOL003;bolsas;Bolsas 60 x 90;Pack x 50;;"img/products/bolsa-negra.webp";si
+BOL004;bolsas;Bolsas 80 x 100;Pack x 50;;"img/products/bolsa-negra.webp";si
+BOL005;bolsas;"Bolsas 45 x 60 cristal";Pack x 50;;"img/products/bolsa-cristal.webp";si
+BOL006;bolsas;"Bolsas 60 x 90 verdes";Pack x 50;;"img/products/bolsa-verde.webp";si
+BOL007;bolsas;"Bolsas 60 x 90 cristal";Pack x 50;;"img/products/bolsa-cristal.webp";si
+BOL008;bolsas;"Bolsas 60 x 90 blancas";Pack x 50;;"img/products/bolsa-blanca.webp";si
+BOL009;bolsas;"Bolsas 80 x 100 verdes";Pack x 50;;"img/products/bolsa-verde.webp";si
+BOL010;bolsas;"Bolsas 80 x 100 cristal";Pack x 50;;"img/products/bolsa-cristal.webp";si
+BOL011;bolsas;"Bolsas 60 x 90 rojas patologicas";Pack x 50;;"img/products/bolsa-roja.webp";si
+BOL012;bolsas;"Bolsas 80 x 100 rojas patologicas";Pack x 50;;"img/products/bolsa-roja.webp";si
+BOL013;bolsas;Bolsas camiseta 30 x 40;Pack x 100;;"img/products/bolsa-camiseta.webp";si
+BOL014;bolsas;Bolsas camiseta 40 x 50;Pack x 100;;"img/products/bolsa-camiseta.webp";si
+BOL015;bolsas;Bolsas camiseta 45 x 60;Pack x 100;;"img/products/bolsa-camiseta.webp";si
+QUI001;quimicos;"Lavandina";"Bidon x 5 L";3990;"img/products/lavandina-5l.webp";si
+QUI002;quimicos;"Detergente";"Bidon x 5 L";;"img/products/detergente-5l.webp";si
+QUI003;quimicos;"Desengrasante";"Bidon x 5 L";;"img/products/desengrasante-5l.webp";si
+QUI004;quimicos;"Desinfectante de piso";"Bidon x 5 L";;"img/products/des-piso-5l.webp";si
+QUI005;quimicos;"Jabon para manos";"Bidon x 5 L";;"img/products/jabon-manos-5l.webp";si
+QUI006;quimicos;"Jabon para ropa";"Bidon x 5 L";9900;"img/products/jabon-ropa-5l.webp";si
+QUI007;quimicos;"Suavizante";"Bidon x 5 L";8900;"img/products/suavizante-5l.webp";si
+QUI008;quimicos;"Cloro";"Bidon x 5 L";7900;"img/products/cloro-5l.webp";si
+QUI009;quimicos;"Perfumina textil";"Bidon x 5 L";24900;"img/products/perfumina-5l.webp";si
+QUI010;quimicos;"Cera mosaico";"Bidon x 5 L";22900;"img/products/cera-5l.webp";si
+QUI011;quimicos;"Limpia vidrios";"Bidon x 5 L";9900;"img/products/vidrio-5l.webp";si
+QUI012;quimicos;"Vinagre limpieza";"Bidon x 5 L";9900;"img/products/vinagre-5l.webp";si
+QUI013;quimicos;Aclohol;"Bidon x 5 L";18900;"img/products/alcohol-5l.webp";si
+QUI014;quimicos;Aclohol gel;"Bidon x 5 L";18900;"img/products/alcohol-gel-5l.webp";si
+"HER001";"herramientas";"Cabo madera";1.3 cm, 1.5 cm;2900;"img/products/cabo-madera.webp";si
+"HER002";"herramientas";Cabo metal;1.5 cm;8900;"img/products/cabo-metal.webp";si
+"HER003";"herramientas";"Pala con palo";"Varios colores";5900;"img/products/palas.webp";si
+"HER004";"herramientas";"Secador goma";30 cm, 40 cm;2900;"img/products/secador-goma.webp";si
+"HER005";"herramientas";"Secador acqua";40 cm;3900;"img/products/secador-acqua.webp";si
+"HER006";"herramientas";"Mopin algodon";"chico o grande a rosca";;"img/products/mopin-algodon.webp";si
+"HER007";"herramientas";"Escobillon domestico";"Ideal interiores";;"img/products/escobillon-domestico.webp";si
+"HER008";"herramientas";"Escoba figaro";"Ideal interiores";;"img/products/escoba-figaro.webp";si
+"HER009";"herramientas";"Plumero microfibra";"Con rosca para cabo";;"img/products/plumero-microfibra.webp";si
+"HER010";"herramientas";"Balde pro";11 L;;"img/products/balde-pro.webp";si
+"HER011";"herramientas";"Balde exprimidor";14 L;;"img/products/balde-exprimidor.webp";si
+"HER012";"herramientas";"Secador vidrio acero inoxidable";25 cm, 35 cm, 45 cm;;"img/products/secador-vidrio-aceroinox.webp";si
+"HER013";"herramientas";"Secador vidrio aluminio y pvc";25 cm, 35 cm, 45 cm;;"img/products/secador-vidrio-aluypvc.webp";si
+"HER014";"herramientas";"Corderito y marco pvc";25 cm, 35 cm, 45 cm;;"img/products/corderitomarcopvc.webp";si
+"HER015";"herramientas";"Secador vidrios viceversa";25 cm, 35 cm, 45 cm;;"img/products/secadorvidriosviceversa.webp";si
+"HER016";"herramientas";"Cabo telescopico aluminio";Desde 2 mts hasta 9 mts;;"img/products/cabo-telescopico.webp";si
+"TRA001";"trapos";"Trapo de piso 5t consorcio";55 cm x 70 cm;1990;"img/products/trapo-piso-consorcio.webp";si
+"TRA002";"trapos";"Trapo de piso super blanco";60 cm x 60 cm;2490;"img/products/trapo-piso-superblanco.webp";si
+"TRA003";"trapos";"Trapo de piso super gris";50 cm x 60 cm;1790;"img/products/trapo-piso-supergris.webp";si
+"TRA004";"trapos";"Rejilla semi-pesada";"Mediana";1990;"img/products/rejilla-semipesada.webp";si
+"TRA005";"trapos";"Rejilla pesada";Lava coche;2490;"img/products/rejilla-pesada.webp";si
+"TRA006";"trapos";"Trapo multiuso";"multisuperficie";990;"img/products/trapo-multiuso.webp";si
+"TRA007";"trapos";"Franela";"Mediana naranja";1990;"img/products/franela.webp";si
+"TRA008";"trapos";"Repasador";"Gastronomicos muy absorventes";;"img/products/repasador.webp";si
+"TRA009";"trapos";"Trapo microfibra";"Ultra absorvente, no raya, no desprende pelusa. 40 cm x 40 cm";1990;"img/products/trapo-microfibra.webp";si
+"AER001";"aerosoles";"Saphirus aerosol";"Fragancias surtidas";6490;"img/products/saphirus.webp";si
+"AER002";"aerosoles";"Glade aerosol";"Fragancias surtidas";6490;"img/products/glade.webp";si
+"AER003";"aerosoles";"Lustramueble aerosol";"Distintas marcas";6490;"img/products/blem.webp";si
+"AER004";"aerosoles";"Desinfectante aerosol";"Distintas marcas";6490;"img/products/desinfectante.webp";si
+ACC001;"accesorios";"Guantes latex mapa vital 124";"Destreza, resistencia, durabilidad, comodidad";3900;"img/products/guantes-mapavital124.webp";si
+ACC002;"accesorios";"Guantes latex mapa no drop 182";"Destreza, resistencia, durabilidad, comodidad";5900;"img/products/guantes-mapanodrop.webp";si
+ACC003;"accesorios";"Guantes latex mapa no drop 182";"Destreza, resistencia, durabilidad, comodidad";8900;"img/products/guantes-mapa415.webp";si
+ACC004;"accesorios";"Guantes nitrilo 100u";"Varios colores";13900;"img/products/guantes-nitrilo.webp";si
+ACC005;"accesorios";"Esponjon";"Esponjon fibra";990;"img/products/esponjon.webp";si
+ACC006;"accesorios";"Esponja acero";Plateada 30g;990;"img/products/esponja-acero.webp";si
+ACC007;"accesorios";"Fibra verde";10cm x 20 cm;1900;"img/products/fibraverde.webp";si
+DIS001;"dispensers";"Dispenser papel higienico alto metraje";"150 m a 300 m (incluye adaptador)";;"img/products/dispenser-papelhigienico.webp";si
+DIS002;"dispensers";"Dispenser jabon";"1 L Para jabon liquido o alcohol en gel";;"img/products/dispenser-jabonmanos.webp";si
+DIS003;"dispensers";"Dispenser toallas intercaladas";"Para toallas intercaladas";;"img/products/dispenser-toallaintercaladas.webp";si
