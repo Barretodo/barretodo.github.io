@@ -1,0 +1,10 @@
+id;"nombre";"prefijo";activo
+todos;Todo;TOD;si
+papeles;Papeles;PAP;si
+bolsas;Bolsas;BOL;si
+quimicos;Quimicos;QUI;si
+"herramientas";"Herramientas de limpieza";"HER";si
+"trapos";"Trapos";"TRA";si
+"aerosoles";"Aerosoles";"AER";si
+"accesorios";"Accesorios limpieza";ACC;si
+"dispensers";"Dispensers";DIS;si
